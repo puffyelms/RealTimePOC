@@ -1,0 +1,8 @@
+.highlight-up {
+    background-color: lightgreen;
+    transition: background 200ms;
+}
+.highlight-down {
+    background-color: lightsalmon;
+    transition: background 200ms;
+}

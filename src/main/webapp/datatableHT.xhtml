@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>WebSocket Demo</title>
+        </f:facet>
+
+        <h:outputStylesheet library="css" name="handsontable.full.css" />
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="mystylesheet.css" />
+        </f:facet>
+
+        <script src="resources/js/handsontable.full.js" type="text/javascript"></script>
+        <script src="resources/js/websocketconnection.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+
+        <h:form id="myForm">
+            <p>
+                WebSocket Demo
+            </p>
+            <p:outputLabel id="label1" value="Timestampgoeshere" style="color: crimson"/>
+            <p>Test</p>
+
+            <p:remoteCommand name="updateAllThatChanged" actionListener="#{dtBasicView.refreshProductGrids}" oncomplete="fluctuateCells();" />
+
+            <c:forEach items="#{dtBasicView.productSectionsList}" var="productData">
+
+                <div id="myDataTableDiv_#{productData.productName}">
+                    <p:dataTable id="myDataTable_#{productData.productName}" var="product" value="#{productData.productGrid}" >
+                        <p:column headerText="coupon">
+                            <h:outputText value="#{product.coupon}" />
+                        </p:column>
+
+                        <p:column headerText="Price M1">
+                            <div id="postM1_#{product.id}" class="#{product.trendM1}" >
+                                <h:outputText value="#{product.priceM1}" />
+                            </div>
+                        </p:column>
+
+                        <p:column headerText="Price M2">
+                            <div id="postM2_#{product.id}" class="#{product.trendM2}" >
+                                <h:outputText value="#{product.priceM2}" />
+                            </div>
+
+                        </p:column>
+
+                        <p:column headerText="Price M3">
+                            <div id="postM3_#{product.id}" class="#{product.trendM3}" >
+                                <h:outputText value="#{product.priceM3}" />
+                            </div>
+                        </p:column>
+
+                        <p:column headerText="Price M4">
+                            <div id="postM4_#{product.id}" class="#{product.trendM4}" >
+                                <h:outputText value="#{product.priceM4}" />
+                            </div>
+                        </p:column>
+                    </p:dataTable>   
+                </div>
+
+            </c:forEach>
+
+
+
+
+        </h:form>
+
+
+        <p>Handsontable HT</p>
+
+        <div id="example"></div>
+
+        <p:notificationBar position="top" widgetVar="topBar" styleClass="top">
+            <h:outputText value="Datatable updated"
+                          style="color:#FFCC00;font-size:36px;height:80px;" />
+        </p:notificationBar>
+
+        <p:dialog header="Lost connection to the server" widgetVar="dlgLostConnection" modal="true" resizable="false" height="100">
+            <h:outputText value="Attempting to reconnect..." />
+        </p:dialog> 
+
+        <script type="text/javascript">
+
+            var data = [
+                ["", "Ford", "Volvo", "Toyota", "Honda"],
+                ["2014", -10, 11, 12, 13],
+                ["2015", 20, 11, -14, 13],
+                ["2016", 30, 15, 12, 13]
+            ];
+            var highlightVals = [
+                [0, 0, 0, 0, 0],
+                [0, 1, 0, 0, 0],
+                [0, 1, 2, 0, 0],
+                [0, 0, 0, 1, 0]
+            ];
+
+            function firstRowRenderer(instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                td.style.fontWeight = 'bold';
+                td.style.color = 'green';
+                td.style.background = '#CEC';
+            }
+
+            function negativeValueRenderer(instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.TextRenderer.apply(this, arguments);
+                // if row contains negative number
+
+                if (highlightVals[row][col] === 2) {
+                    //             if (parseInt(value, 10) &lt; 0) {
+                    // add class "negative"
+                    //                 td.className = 'make-me-red';
+                    td.style.background = '#f00';
+                } else if (highlightVals[row][col] === 1) {
+                    td.style.background = 'orange';
+                }
+
+                //             if (!value || value === '') {
+                //                 td.style.background = '#EEE';
+                //             }
+                //             else {
+                //                 if (value === 'Honda') {
+                //                     td.style.fontStyle = 'italic';
+                //                 }
+                //                 td.style.background = '';
+                //             }
+            }
+
+            // maps function to lookup string
+            Handsontable.renderers.registerRenderer('negativeValueRenderer', negativeValueRenderer);
+
+            var container = document.getElementById('example');
+            var hot = new Handsontable(container, {
+                data: data,
+                contextMenu: true,
+                cells: function (row, col, prop) {
+                    var cellProperties = {};
+                    if (row === 0 || this.instance.getData()[row][col] === 'readOnly') {
+                        cellProperties.readOnly = true; // make cell read-only if it is first row or the text reads 'readOnly'
+                    }
+                    if (row === 0) {
+                        cellProperties.renderer = firstRowRenderer; // uses function directly
+                    }
+                    else {
+                        cellProperties.renderer = "negativeValueRenderer"; // uses lookup map
+                    }
+
+                    return cellProperties;
+                }
+            });
+
+
+            var tableUpdated = false;
+            //    var divsToUpdate = "";
+
+            function fluctuateCells() {
+                //jQuery('#post_' +id).effect("slide", { direction: "right" }, 2000); 
+                //$('#post_' + id).effect("highlight", {color: "#669966"}, 1000);
+                $('.up').effect("highlight", {color: "#669966"}, 1000);
+                $('.down').effect("highlight", {color: "#996666"}, 1000);
+                if ($('.down').length ) {
+                    console.log("found down...");
+                } else {
+                    console.log("didn't find down...");
+                }
+                if ($('.up').length ) {
+                    console.log("found up...");
+                }else {
+                    console.log("didn't find up...");
+                }
+                $(".up").switchClass("up", "samew");
+                $(".down").switchClass("down", "samew");
+//                $('.up').removeClass("up");
+//                $('.down').removeClass("down");
+//                $('#myDataTableDiv_'+productNameFluct+' .up').effect("highlight", {color: "#669966"}, 500);
+//                $('#myDataTableDiv_'+productNameFluct+' .down').effect("highlight", {color: "#996666"}, 500);
+            }
+
+            // Connect to websocket after page is loaded
+            jQuery(document).ready(function () {
+                createWebSocket();
+            });
+        </script>
+    </h:body>
+</HTML>
