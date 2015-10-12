@@ -3,18 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <title>20115875</title>
+
+    <script src="resources/js/websocketconnection-a.js"   ></script>
+
+
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css"/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js" data-semver="1.3.15"></script>
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
     <script src="js/app.js"></script>
 
 </head>
 
-<body data-ng-controller="AppCtrl as ctrl">
-<div class="container">
+<body >
+
+<div data-ng-controller="AppCtrl as ctrl" class="container" id="MainWrap">
     <div class="page-header">
         <h1>Angular js - Highlight dom when value changes</h1>
     </div>
@@ -43,5 +49,12 @@
     <button type="button" data-ng-click="ctrl.changeValue()" class="btn btn-default">change single value</button>
     <button type="button" data-ng-click="ctrl.revert()" class="btn btn-default">revert to initial</button>
 </div>
+
+<script type="text/javascript">
+    // Connect to websocket after page is loaded
+    jQuery(document).ready(function () {
+    createWebSocket();
+    });
+</script>
 </body>
 </html>

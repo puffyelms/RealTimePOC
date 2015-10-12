@@ -15,8 +15,18 @@ var changed =  [
 (function (app, ng) {
     'use strict';
 
-    app.controller('AppCtrl', [function(){
+    app.controller('AppCtrl', ['$scope', function ($scope) {
         var vm = this;
+
+        $scope.customParams = {};
+
+        $scope.updateCustomRequest = function () {
+            vm.productGrid = ng.copy(changed);
+            //$scope.customParams.data = data;
+            //$scope.customParams.type = type;
+            //$scope.customParams.res = res;
+            //$scope.sampletext = "input text: " + data;
+        };
 
         vm.productGrid = ng.copy(initial);
 
@@ -63,4 +73,5 @@ var changed =  [
         };
     }]);
 })(angular.module('app', []), angular);
+
 
