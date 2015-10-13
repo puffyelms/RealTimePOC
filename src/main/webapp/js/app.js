@@ -6,10 +6,10 @@ var initial =  [
 ];
 
 var changed =  [
-    { "month1": 99,  "month2" : 220, "month3": 800, "month4" : 200  },
-    { "month1": 99,  "month2" : 100, "month3": 800, "month4" : 200  },
-    { "month1": 99,  "month2" : 220, "month3": 800, "month4" : 200  },
-    { "month1": 110, "month2" : 199, "month3": 143, "month4" : 22  }
+    { "month1": 1,  "month2" : 2200, "month3": 1, "month4" : 200  },
+    { "month1": 1,  "month2" : 1000, "month3": 8200, "month4" : 200  },
+    { "month1": 1,  "month2" : 2200, "month3": 10, "month4" : 200  },
+    { "month1": 1, "month2" : 1990, "month3": 11, "month4" : 1111  }
 ];
 
 (function (app, ng) {
@@ -20,12 +20,9 @@ var changed =  [
 
         $scope.customParams = {};
 
-        $scope.updateCustomRequest = function () {
-            vm.productGrid = ng.copy(changed);
-            //$scope.customParams.data = data;
-            //$scope.customParams.type = type;
-            //$scope.customParams.res = res;
-            //$scope.sampletext = "input text: " + data;
+        //Called from websockets.
+        $scope.updateCustomRequest = function (newData) {
+            vm.productGrid = ng.copy(newData);
         };
 
         vm.productGrid = ng.copy(initial);

@@ -65,8 +65,16 @@ function onSocketMessage(event) {
 
         var scope = angular.element(document.getElementById("MainWrap")).scope();
         scope.$apply(function () {
+
+            var newData =  [
+                { "month1": 9,  "month2" : 22, "month3": 80, "month4" : 2000  },
+                { "month1": 9,  "month2" : 100, "month3": 80, "month4" : 20  },
+                { "month1": 9,  "month2" : 220, "month3": 80, "month4" : 20  },
+                { "month1": 11, "month2" : 19, "month3": 14, "month4" : 2  }
+            ];
+
             //scope.updateCustomRequest(data, type, res);
-            scope.updateCustomRequest();
+            scope.updateCustomRequest(newData);
         })
 
 
@@ -80,12 +88,7 @@ function onSocketMessage(event) {
 
 
 
-            changed =  [
-                { "month1": 9,  "month2" : 22, "month3": 80, "month4" : 2000  },
-                { "month1": 9,  "month2" : 100, "month3": 80, "month4" : 20  },
-                { "month1": 9,  "month2" : 220, "month3": 80, "month4" : 20  },
-                { "month1": 11, "month2" : 19, "month3": 14, "month4" : 2  }
-            ];
+
 
             //Insert code here...
 

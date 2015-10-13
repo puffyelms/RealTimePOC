@@ -58,7 +58,7 @@ public class HeartbeatServletContextListener implements ServletContextListener, 
                 logger.trace("Firing Message: {}",message);
                 heartbeatEvent.fire(message);
                 
-                Thread.sleep(5000);
+                Thread.sleep(1000);
             }
         } catch (InterruptedException e) {
             System.out.println("deamon stopped");

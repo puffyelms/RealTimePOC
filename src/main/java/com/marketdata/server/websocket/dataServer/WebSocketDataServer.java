@@ -69,8 +69,6 @@ public class WebSocketDataServer {
     }
 
     public void onAlertAllClients(@Observes @HeartBeatMessage String message) {
-//        logger.debug("MESSAGE RECEIVED!!!!!! message=" + message);
-//        System.out.println("What should i do??? message=" + message);
 
         if (tableUpdateMap != null && !tableUpdateMap.isEmpty()) {
             synchronized(lock) {
@@ -80,10 +78,7 @@ public class WebSocketDataServer {
                 String uiUpdateList = StringUtilities.convertListToCommaString(tableUpdateMap.values());
 
                 System.out.println("uiUpdateList="+uiUpdateList);
-                
-                //                for (String tableUpdate : myForm:myDataTable_#{productData.productName})
 
-                
                 Feed feed = new Feed(lastTimeStamp, uiUpdateList);
 
                 try {
