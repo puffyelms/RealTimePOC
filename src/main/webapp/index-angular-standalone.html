@@ -48,9 +48,32 @@
     <button type="button" data-ng-click="ctrl.loadData()" class="btn btn-primary">load new data</button>
     <button type="button" data-ng-click="ctrl.changeValue()" class="btn btn-default">change single value</button>
     <button type="button" data-ng-click="ctrl.revert()" class="btn btn-default">revert to initial</button>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Lost Connection</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Connection lost.  Attempting reconnection...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
+    $('#myModal').modal({
+        backdrop: 'static',
+        keyboard: false
+    })
+
     // Connect to websocket after page is loaded
     jQuery(document).ready(function () {
     createWebSocket();

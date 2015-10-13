@@ -11,6 +11,7 @@ function createWebSocket() {
         // reset the tries back to 1 since we have a new connection opened.
         attempts = 1;
         console.log("Made connection.");
+        $('#myModal').modal('hide');
         //var dlg = PF('dlgLostConnection');
         //if (dlg) {
         //    dlg.hide();
@@ -24,8 +25,9 @@ function createWebSocket() {
         setTimeout(function () {
             // We've tried to reconnect so increment the attempts by 1
             attempts++;
-            var dlg = PF('dlgLostConnection');
-            dlg.show();
+            $('#myModal').modal('show');
+            //var dlg = PF('dlgLostConnection');
+            //dlg.show();
             // Connection has closed so try to reconnect every 10 seconds.
             createWebSocket();
         }, time);
