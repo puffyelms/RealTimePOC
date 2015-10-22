@@ -55,8 +55,8 @@ public class JmsFeedMessage {
     public String toString() {
         return "JmsFeedMessage{" + "timestamp=" + timestamp + ", productName=" + productName + ", products=" + products + '}';
     }
-    
-    
-    
-    
+
+
+
+
 }

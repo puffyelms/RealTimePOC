@@ -1,8 +1,11 @@
 package com.marketdata.server.websocket.dataServer;
 
+import com.marketdata.common.enums.ProductName;
 import com.marketdata.common.utilities.StringUtilities;
+import com.marketdata.server.domain.Product;
 import com.marketdata.server.messageserver.JsonFeedHelper;
 import com.marketdata.server.service.PricingDataSingleton;
+import com.marketdata.server.websocket.AdjustedPrices;
 import com.marketdata.server.websocket.Feed;
 import com.marketdata.server.websocket.JmsFeedMessage;
 import com.marketdata.server.websocket.dataServer.qualifier.HeartBeatMessage;
@@ -73,13 +76,21 @@ public class WebSocketDataServer {
         if (tableUpdateMap != null && !tableUpdateMap.isEmpty()) {
             synchronized(lock) {
 
-
-
                 String uiUpdateList = StringUtilities.convertListToCommaString(tableUpdateMap.values());
 
                 System.out.println("uiUpdateList="+uiUpdateList);
 
-                Feed feed = new Feed(lastTimeStamp, uiUpdateList);
+                List<Product> productToSend = PricingDataSingleton.getInstance().getProduct(ProductName.PRODUCT30.getCode());
+
+                AdjustedPrices[] adjPriceList = new AdjustedPrices[productToSend.size()];
+                int index = 0;
+                for (Product product : productToSend) {
+                    AdjustedPrices adjPrice = new AdjustedPrices(product.getCoupon(), product.getPriceM1(), product.getPriceM2(), product.getPriceM3(), product.getPriceM4());
+                    adjPriceList[index] = adjPrice;
+                    index++;
+                }
+
+                Feed feed = new Feed(lastTimeStamp, uiUpdateList,adjPriceList);
 
                 try {
                     for (Session s : allSessions) {

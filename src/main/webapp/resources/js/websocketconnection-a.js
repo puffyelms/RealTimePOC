@@ -50,28 +50,31 @@ function generateInterval (k) {
 }
 
 var tablesToUpdateList = "";
+var cellDataTest = 25;
 
 //function getTablesToUpdateList() {
 //    return tablesToUpdateList;
 //}
-
+var receivedFeed = null;
 function onSocketMessage(event) {
     if (event.data) {
         console.log("event.data=" + event.data);
-        var receivedFeed = JSON.parse(event.data);
+        receivedFeed = JSON.parse(event.data);
         console.log("Received Object: " + JSON.stringify(receivedFeed));
 
 
 
         var scope = angular.element(document.getElementById("MainWrap")).scope();
         scope.$apply(function () {
+            cellDataTest =  cellDataTest +1;
+            var newData = receivedFeed.adjustedPrices;
 
-            var newData =  [
-                { "month1": 9,  "month2" : 22, "month3": 80, "month4" : 2000  },
-                { "month1": 9,  "month2" : 100, "month3": 80, "month4" : 20  },
-                { "month1": 9,  "month2" : 220, "month3": 80, "month4" : 20  },
-                { "month1": 11, "month2" : 19, "month3": 14, "month4" : 2  }
-            ];
+                //[
+                //    { "month1": cellDataTest,  "month2" : 22, "month3": 80, "month4" : 2000  },
+                //    { "month1": 9,  "month2" : 100, "month3": 80, "month4" : 20  },
+                //    { "month1": 9,  "month2" : 220, "month3": 80, "month4" : 20  },
+                //    { "month1": 11, "month2" : 19, "month3": 14, "month4" : 2  }
+                //];
 
             //scope.updateCustomRequest(data, type, res);
             scope.updateCustomRequest(newData);

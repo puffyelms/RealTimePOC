@@ -31,6 +31,7 @@ public class DataSocketDecoder implements Decoder.TextStream<Feed> {
         Feed feed = new Feed();
         feed.setTimestamp(jsonFeed.getString("timestamp"));
         feed.setTableToUpdate(jsonFeed.getString("tableToUpdate"));
+
         return feed;
     }
 

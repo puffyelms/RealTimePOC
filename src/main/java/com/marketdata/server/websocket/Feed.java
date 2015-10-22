@@ -12,15 +12,17 @@ import java.io.Serializable;
  * @author timge_000
  */
 public class Feed implements Serializable{
-    String timestamp;
-    String tableToUpdate;
+    private String timestamp;
+    private String tableToUpdate;
+    private AdjustedPrices[] adjustedPrices;
     
     public Feed() {
     }
 
-    public Feed(String timestamp, String tableToUpdate) {
+    public Feed(String timestamp, String tableToUpdate, AdjustedPrices[] adjustedPrices) {
         this.timestamp = timestamp;
         this.tableToUpdate = tableToUpdate;
+        this.adjustedPrices = adjustedPrices;
     }
     
     public String getTimestamp() {
@@ -39,4 +41,17 @@ public class Feed implements Serializable{
         this.tableToUpdate = tableToUpdate;
     }
 
+    public AdjustedPrices[] getAdjustedPrices() {
+        return adjustedPrices;
+    }
+
+    public void setAdjustedPrices(AdjustedPrices[] adjustedPrices) {
+        this.adjustedPrices = adjustedPrices;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [timestamp = "+timestamp+", adjustedPrices = "+adjustedPrices+", tableToUpdate = "+tableToUpdate+"]";
+    }
 }
