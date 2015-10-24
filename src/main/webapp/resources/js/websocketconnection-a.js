@@ -49,66 +49,22 @@ function generateInterval (k) {
     return Math.min(30, (Math.pow(2, k) - 1)) * 1000;
 }
 
-var tablesToUpdateList = "";
-var cellDataTest = 25;
-
-//function getTablesToUpdateList() {
-//    return tablesToUpdateList;
-//}
-var receivedFeed = null;
 function onSocketMessage(event) {
     if (event.data) {
-        receivedFeed = JSON.parse(event.data);
+        var receivedFeed = JSON.parse(event.data);
         console.log("Received Object: " + JSON.stringify(receivedFeed));
 
         //angular.element(document.getElementById('AppCtrl')).scope().controller.revert()‌​;
-
         //console.log("End Received Object: " + JSON.stringify(receivedFeed));
-
 
         if (receivedFeed.action === "add") {
 
             var scope = angular.element(document.getElementById("MainWrap")).scope();
+            scope.setStagedProductData(receivedFeed.adjustedPrices);
+            scope.updateStagedData();
             scope.$apply(function () {
-                cellDataTest =  cellDataTest +1;
-                var newData = receivedFeed.adjustedPrices;
-
-                //scope.updateCustomRequest(data, type, res);
-                scope.updateCustomRequest(newData);
+                scope.updateStagedData();
             })
-
-            //Insert code here...
-
-            //var mySpan = document.getElementById("myForm:label1");
-            //mySpan.innerHTML = receivedFeed.timestamp;
-            //
-            //console.log("timestamp="+receivedFeed.timestamp);
-            //console.log("tableToUpdate="+receivedFeed.tableToUpdate);
-            //
-            //if (receivedFeed.tableToUpdate !== "") {
-            //
-            //    tablesToUpdateList = receivedFeed.tableToUpdate;
-            //
-            //    //window[updateAllThatChanged]();
-            //    updateAllThatChanged([{name:'updateTheseGrids',value:tablesToUpdateList}]);
-            //
-            //    //window[receivedFeed.tableToUpdate
-            //    //PF('topBar').show();
-            //    tableUpdated = true;
-            //    //                divsToUpdate="@(.post_1),@(.post_3)";
-            //    //              animateNewPost(0);
-            //    data[1][3] = '12';
-            //    highlightVals[1][3] = 0;
-            //    hot.render();
-            //} else {
-            //    PF('topBar').hide();
-            //    //              animateNewPost(1);
-            //    tableUpdated = false;
-            //    data[1][3] = '-10';
-            //    highlightVals[1][3] = 2;
-            //    hot.render();
-            //}
-
 
         }
     }

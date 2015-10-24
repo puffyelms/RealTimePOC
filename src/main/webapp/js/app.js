@@ -18,11 +18,16 @@ var changed =  [
     app.controller('AppCtrl', ['$scope', function ($scope) {
         var vm = this;
 
+        $scope.stagedProductGrid = {};
         $scope.customParams = {};
 
+        $scope.setStagedProductData = function(data2) {
+            $scope.stagedProductGrid = data2;
+        }
+
         //Called from websockets.
-        $scope.updateCustomRequest = function (newData) {
-            vm.productGrid = ng.copy(newData);
+        $scope.updateStagedData = function () {
+            vm.productGrid = $scope.stagedProductGrid;
         };
 
         vm.productGrid = ng.copy(initial);
