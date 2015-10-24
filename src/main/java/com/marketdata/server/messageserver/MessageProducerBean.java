@@ -68,10 +68,8 @@ public class MessageProducerBean {
 
         List<Product> productList = new ArrayList<>();
         Product product1 = new Product(1, coupon, randomPriceString(), randomPriceString(), randomPriceString(), randomPriceString());
-//        Product product2 = new Product(1, "3.5", "", "68.0", "", "");
 
         productList.add(product1);
-//        productList.add(product2);
 
         JmsFeedMessage jmsFeedMessage = new JmsFeedMessage(LocalTime.now().format(timeFormatter), productNameToUpdate, productList);
 
@@ -140,9 +138,9 @@ public class MessageProducerBean {
 
             String productNameToUpdate;
             int dieRollProd = randomSeeder.nextInt(10) + 1;
-            if (dieRollProd < 3) {
+            if (dieRollProd < 8) {
                 productNameToUpdate = ProductName.PRODUCT30.getCode();
-            } else if (dieRollProd < 6) {
+            } else if (dieRollProd < 9) {
                 productNameToUpdate = ProductName.PRODUCT15.getCode();
             } else {
                 productNameToUpdate = ProductName.PRODUCT10.getCode();
@@ -155,10 +153,8 @@ public class MessageProducerBean {
 
             List<Product> productList = new ArrayList<>();
             Product product1 = new Product(1, coupon, randomPriceString(), randomPriceString(), randomPriceString(), randomPriceString());
-//        Product product2 = new Product(1, "3.5", "", "68.0", "", "");
 
             productList.add(product1);
-//        productList.add(product2);
 
             JmsFeedMessage jmsFeedMessage = new JmsFeedMessage(LocalTime.now().format(timeFormatter), productNameToUpdate, productList);
 
@@ -171,7 +167,7 @@ public class MessageProducerBean {
                 logger.error("Cannot send message to queue: {}", ex);
             }
 
-        }, 0, 400, TimeUnit.MILLISECONDS);
+        }, 0, 1000, TimeUnit.MILLISECONDS);
 
     }
 

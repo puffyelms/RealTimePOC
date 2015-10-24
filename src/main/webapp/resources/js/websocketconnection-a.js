@@ -58,43 +58,26 @@ var cellDataTest = 25;
 var receivedFeed = null;
 function onSocketMessage(event) {
     if (event.data) {
-        console.log("event.data=" + event.data);
         receivedFeed = JSON.parse(event.data);
         console.log("Received Object: " + JSON.stringify(receivedFeed));
 
-
-
-        var scope = angular.element(document.getElementById("MainWrap")).scope();
-        scope.$apply(function () {
-            cellDataTest =  cellDataTest +1;
-            var newData = receivedFeed.adjustedPrices;
-
-                //[
-                //    { "month1": cellDataTest,  "month2" : 22, "month3": 80, "month4" : 2000  },
-                //    { "month1": 9,  "month2" : 100, "month3": 80, "month4" : 20  },
-                //    { "month1": 9,  "month2" : 220, "month3": 80, "month4" : 20  },
-                //    { "month1": 11, "month2" : 19, "month3": 14, "month4" : 2  }
-                //];
-
-            //scope.updateCustomRequest(data, type, res);
-            scope.updateCustomRequest(newData);
-        })
-
-
         //angular.element(document.getElementById('AppCtrl')).scope().controller.revert()‌​;
 
-        console.log("End Received Object: " + JSON.stringify(receivedFeed));
+        //console.log("End Received Object: " + JSON.stringify(receivedFeed));
 
 
         if (receivedFeed.action === "add") {
 
+            var scope = angular.element(document.getElementById("MainWrap")).scope();
+            scope.$apply(function () {
+                cellDataTest =  cellDataTest +1;
+                var newData = receivedFeed.adjustedPrices;
 
-
-
-
+                //scope.updateCustomRequest(data, type, res);
+                scope.updateCustomRequest(newData);
+            })
 
             //Insert code here...
-
 
             //var mySpan = document.getElementById("myForm:label1");
             //mySpan.innerHTML = receivedFeed.timestamp;

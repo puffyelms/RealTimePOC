@@ -4,7 +4,6 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/enums/ProductName.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/utilities/StringUtilities.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/bean/BasicView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/bean/NotificationManagedBean.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/domain/Product.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/domain/ProductSection.java" charset="UTF-8" />
