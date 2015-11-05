@@ -1,15 +1,15 @@
 var initial =  [
-    { "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
-    { "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
-    { "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
-    { "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  }
+    { "coupon": 1.0, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+    { "coupon": 1.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+    { "coupon": 2.0, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+    { "coupon": 2.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  }
 ];
 
 var changed =  [
-    { "month1": 1,  "month2" : 2200, "month3": 1, "month4" : 200  },
-    { "month1": 1,  "month2" : 1000, "month3": 8200, "month4" : 200  },
-    { "month1": 1,  "month2" : 2200, "month3": 10, "month4" : 200  },
-    { "month1": 1, "month2" : 1990, "month3": 11, "month4" : 1111  }
+    { "coupon": 1.0, "month1": 1,  "month2" : 2200, "month3": 1, "month4" : 200  },
+    { "coupon": 1.5, "month1": 1,  "month2" : 1000, "month3": 8200, "month4" : 200  },
+    { "coupon": 2.0, "month1": 1,  "month2" : 2200, "month3": 10, "month4" : 200  },
+    { "coupon": 2.5,"month1": 1, "month2" : 1990, "month3": 11, "month4" : 1111  }
 ];
 
 (function (app, ng) {
@@ -52,8 +52,8 @@ var changed =  [
                 model: '=highlighter'
             },
             link: function(scope, element) {
-                scope.$watch('model', function (nv, ov) {
-                    if (nv > ov) {
+                scope.$watch('model', function (newVal, oldVal) {
+                    if (newVal > oldVal) {
                         // apply class
                         element.addClass('highlight-up');
 
@@ -61,7 +61,7 @@ var changed =  [
                         $timeout(function () {
                             element.removeClass('highlight-up');
                         }, 1000);
-                    } else if (nv < ov) {
+                    } else if (newVal < oldVal) {
                         // apply class
                         element.addClass('highlight-down');
 

@@ -6,3 +6,7 @@
     background-color: lightcoral;
     transition: background 200ms;
 }
+
+.panel {
+    margin-bottom: 0px;
+}

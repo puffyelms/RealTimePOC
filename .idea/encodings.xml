@@ -23,8 +23,12 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/weblogic.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/clock.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/createPerson.xhtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/css/handsontable.full.css" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/datatableHT.xhtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/jms-producer.xhtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/handsontable.full.js" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/ngHandsontable.js" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/ngHandsontable.min.js" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/layout" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/notification.xhtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/receivers.xhtml" charset="UTF-8" />
@@ -34,5 +38,6 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/websocket.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/websocketconnection.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/whiteboard.js" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

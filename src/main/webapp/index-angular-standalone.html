@@ -25,9 +25,38 @@
         <h3>Angular js - Highlight dom when value changes</h3>
     </div>
 
+
+    <div class="accordion" role="tab" id="headingOne">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class = "accordion-toggle" data-toggle="collapse" data-parent="#collapseOne" href="#collapseOne"  aria-controls="collapseOne">
+                    Market
+                </a>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    Content
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#collapseTwo" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Cash
+                </a>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    More Content
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>coupon</th>
             <th>Month 1</th>
             <th>Month 2</th>
             <th>Month 3</th>
@@ -37,10 +66,11 @@
 
         <tbody>
         <tr data-ng-repeat="prices in ctrl.productGrid track by $index">
-            <td data-highlighter="prices.month1">{{ prices.month1 }}</td>
-            <td data-highlighter="prices.month2">{{ prices.month2 }}</td>
-            <td data-highlighter="prices.month3">{{ prices.month3 }}</td>
-            <td data-highlighter="prices.month4">{{ prices.month4 }}</td>
+            <td data-highlighter="prices.coupon">{{ prices.coupon | number:1 }}</td>
+            <td data-highlighter="prices.month1">{{ prices.month1 | number:6 }}</td>
+            <td data-highlighter="prices.month2">{{ prices.month2 | number:6 }}</td>
+            <td data-highlighter="prices.month3">{{ prices.month3 | number:6 }}</td>
+            <td data-highlighter="prices.month4">{{ prices.month4 | number:6 }}</td>
         </tr>
         </tbody>
     </table>
