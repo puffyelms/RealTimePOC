@@ -167,7 +167,7 @@ public class MessageProducerBean {
                 logger.error("Cannot send message to queue: {}", ex);
             }
 
-        }, 0, 200, TimeUnit.MILLISECONDS);
+        }, 0, 500, TimeUnit.MILLISECONDS);
 
     }
 

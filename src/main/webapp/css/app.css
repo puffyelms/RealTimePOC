@@ -1,13 +1,15 @@
 .highlight-up {
     background-color: lightgreen;
-    color: white;
     transition: background 2000ms;
 }
 .highlight-down {
     background-color: lightcoral;
-    color: white;
     transition: background 2000ms;
 }
+.white-text {
+    color: white !important;;
+}
+
 .highlight-cob-up {
     color: green;
 }

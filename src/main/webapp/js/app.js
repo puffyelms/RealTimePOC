@@ -178,19 +178,19 @@ var changed =  [
                         if (newVal.currentPrice > oldVal.currentPrice) {
                             // apply class
                             //$('#lblName').closest('tr').index();
-                            element.addClass('highlight-up');
+                            element.addClass('highlight-up white-text');
 
                             // auto remove after some delay
                             $timeout(function () {
-                                element.removeClass('highlight-up');
+                                element.removeClass('highlight-up white-text');
                             }, 2000);
                         } else if (newVal.currentPrice < oldVal.currentPrice) {
                             // apply class
-                            element.addClass('highlight-down');
+                            element.addClass('highlight-down white-text');
 
                             // auto remove after some delay
                             $timeout(function () {
-                                element.removeClass('highlight-down');
+                                element.removeClass('highlight-down white-text');
                             }, 2000);
                         }
 
