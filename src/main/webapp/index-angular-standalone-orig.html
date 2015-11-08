@@ -67,10 +67,10 @@
         <tbody>
         <tr data-ng-repeat="prices in ctrl.productGrid track by $index">
             <td data-highlighter="prices">{{ prices.coupon | number:1 }}</td>
-            <td data-highlighter="prices.cellMonth1">{{  prices.cellMonth1.currentPrice | number:6 }}</td>
-            <td data-highlighter="prices.cellMonth2">{{  prices.cellMonth2.currentPrice | number:6 }}</td>
-            <td data-highlighter="prices.cellMonth3">{{  prices.cellMonth3.currentPrice | number:6 }}</td>
-            <td data-highlighter="prices.cellMonth4">{{  prices.cellMonth4.currentPrice | number:6 }}</td>
+            <td data-highlighter="prices">{{ prices.zmonth1 | number:6 }}</td>
+            <td data-highlighter="prices">{{ prices.month2 | number:6 }}</td>
+            <td data-highlighter="prices">{{ prices.month3 | number:6 }}</td>
+            <td data-highlighter="prices">{{ prices.month4 | number:6 }}</td>
         </tr>
         </tbody>
     </table>

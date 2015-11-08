@@ -52,14 +52,14 @@ public class MessageProducerBean {
         // Generate a feed object
         //Randomly select a product to update
         String productNameToUpdate;
-        int dieRollProd = randomSeeder.nextInt(10) + 1;
-        if (dieRollProd < 3) {
+//        int dieRollProd = randomSeeder.nextInt(10) + 1;
+//        if (dieRollProd < 3) {
             productNameToUpdate = ProductName.PRODUCT30.getCode();
-        } else if (dieRollProd < 6) {
-            productNameToUpdate = ProductName.PRODUCT15.getCode();
-        } else {
-            productNameToUpdate = ProductName.PRODUCT10.getCode();
-        }
+//        } else if (dieRollProd < 6) {
+//            productNameToUpdate = ProductName.PRODUCT15.getCode();
+//        } else {
+//            productNameToUpdate = ProductName.PRODUCT10.getCode();
+//        }
 
         int couponInt = randomSeeder.nextInt(7);
         BigDecimal bd = BigDecimal.valueOf((couponInt * 0.5) + 2.5);
@@ -137,14 +137,14 @@ public class MessageProducerBean {
         timer.scheduleAtFixedRate(() -> {
 
             String productNameToUpdate;
-            int dieRollProd = randomSeeder.nextInt(10) + 1;
-            if (dieRollProd < 8) {
+//            int dieRollProd = randomSeeder.nextInt(10) + 1;
+//            if (dieRollProd < 8) {
                 productNameToUpdate = ProductName.PRODUCT30.getCode();
-            } else if (dieRollProd < 9) {
-                productNameToUpdate = ProductName.PRODUCT15.getCode();
-            } else {
-                productNameToUpdate = ProductName.PRODUCT10.getCode();
-            }
+//            } else if (dieRollProd < 9) {
+//                productNameToUpdate = ProductName.PRODUCT15.getCode();
+//            } else {
+//                productNameToUpdate = ProductName.PRODUCT10.getCode();
+//            }
 
             int couponInt = randomSeeder.nextInt(7);
             BigDecimal bd = BigDecimal.valueOf((couponInt * 0.5) + 2.5);
@@ -167,7 +167,7 @@ public class MessageProducerBean {
                 logger.error("Cannot send message to queue: {}", ex);
             }
 
-        }, 0, 1000, TimeUnit.MILLISECONDS);
+        }, 0, 200, TimeUnit.MILLISECONDS);
 
     }
 

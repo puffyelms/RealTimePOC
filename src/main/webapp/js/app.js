@@ -1,9 +1,104 @@
-var initial =  [
-    { "coupon": 1.0, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
-    { "coupon": 1.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
-    { "coupon": 2.0, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
-    { "coupon": 2.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  }
-];
+//var initial =  [
+//    { "coupon": 1.0, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+//    { "coupon": 1.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+//    { "coupon": 2.0, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+//    { "coupon": 2.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  }
+//];
+
+var initial = {};
+initial['1.0'] =   { "coupon": 1.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['1.5'] =   { "coupon": 1.5, cellMonth1 :  {"currentPrice" : 101, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['2.0'] =   { "coupon": 2.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['2.5'] =   { "coupon": 2.5, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['3.0'] =   { "coupon": 3.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['3.5'] =   { "coupon": 3.5, cellMonth1 :  {"currentPrice" : 101, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['4.0'] =   { "coupon": 4.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['4.5'] =   { "coupon": 4.5, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['5.0'] =   { "coupon": 5.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['5.5'] =   { "coupon": 4.5, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['6.0'] =   { "coupon": 5.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['6.5'] =   { "coupon": 5.5, cellMonth1 :  {"currentPrice" : 101, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+initial['7.0'] =   { "coupon": 6.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+    cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+};
+
+//var initial3 =  [
+//    { "coupon": 1.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+//    },
+//    { "coupon": 1.5, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+//    },
+//    { "coupon": 2.0, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+//    },
+//    { "coupon": 2.5, cellMonth1 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth2 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth3 :  {"currentPrice" : 100, "cobPrice" : 90 } ,
+//        cellMonth4 :  {"currentPrice" : 100, "cobPrice" : 90 }
+//    }
+//];
+
+    //{ "coupon": 1.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+    //{ "coupon": 2.0, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  },
+    //{ "coupon": 2.5, "month1": 100, "month2" : 100, "month3": 100, "month4" : 100  }
+//];
 
 var changed =  [
     { "coupon": 1.0, "month1": 1,  "month2" : 2200, "month3": 1, "month4" : 200  },
@@ -27,7 +122,19 @@ var changed =  [
 
         //Called from websockets.
         $scope.updateStagedData = function () {
-            vm.productGrid = $scope.stagedProductGrid;
+            var newData2 = $scope.stagedProductGrid;
+            for (var key in newData2) {
+                var obj = newData2[key];
+
+                var couponToModify = vm.productGrid[obj.coupon];
+                couponToModify.cellMonth1.currentPrice = obj.month1;
+                couponToModify.cellMonth2.currentPrice = obj.month2;
+                couponToModify.cellMonth3.currentPrice = obj.month3;
+                couponToModify.cellMonth4.currentPrice = obj.month4;
+                var i = 1;
+            }
+            //var newString = vm.productGrid['1.0'];
+            //vm.productGrid = $scope.stagedProductGrid;
         };
 
         vm.productGrid = ng.copy(initial);
@@ -52,25 +159,31 @@ var changed =  [
                 model: '=highlighter'
             },
             link: function(scope, element) {
-                scope.$watch('model', function (newVal, oldVal) {
-                    if (newVal > oldVal) {
-                        // apply class
-                        element.addClass('highlight-up');
+                scope.$watch(
+                    'model',
+                    function (newVal, oldVal) {
+//look at element.cellIndex=3....
+//                        if (newVal.cellMonth1.currentPrice > oldVal.cellMonth1.currentPrice) {
+                        if (newVal.currentPrice > oldVal.currentPrice) {
+                            // apply class
+                            //$('#lblName').closest('tr').index();
+                            element.addClass('highlight-up');
 
-                        // auto remove after some delay
-                        $timeout(function () {
-                            element.removeClass('highlight-up');
-                        }, 1000);
-                    } else if (newVal < oldVal) {
-                        // apply class
-                        element.addClass('highlight-down');
+                            // auto remove after some delay
+                            $timeout(function () {
+                                element.removeClass('highlight-up');
+                            }, 1000);
+                        } else if (newVal.currentPrice < oldVal.currentPrice) {
+                            // apply class
+                            element.addClass('highlight-down');
 
-                        // auto remove after some delay
-                        $timeout(function () {
-                            element.removeClass('highlight-down');
-                        }, 1000);
-                    }
-                });
+                            // auto remove after some delay
+                            $timeout(function () {
+                                element.removeClass('highlight-down');
+                            }, 1000);
+                        }
+                    },true
+                );
             }
         };
     }]);
