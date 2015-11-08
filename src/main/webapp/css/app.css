@@ -1,12 +1,19 @@
 .highlight-up {
     background-color: lightgreen;
-    transition: background 200ms;
+    color: white;
+    transition: background 2000ms;
 }
 .highlight-down {
     background-color: lightcoral;
-    transition: background 200ms;
+    color: white;
+    transition: background 2000ms;
 }
-
+.highlight-cob-up {
+    color: green;
+}
+.highlight-cob-down {
+    color: red;
+}
 .panel {
     margin-bottom: 0px;
 }
