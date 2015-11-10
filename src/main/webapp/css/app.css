@@ -1,13 +1,14 @@
 .highlight-up {
     background-color: lightgreen;
-    transition: background 2000ms;
+    color: white !important;
+    transition-property: background-color;
+    transition-duration: 2s;
 }
 .highlight-down {
     background-color: lightcoral;
-    transition: background 2000ms;
-}
-.white-text {
-    color: white !important;;
+    color: white !important;
+    transition-property: background-color;
+    transition-duration: 2s;
 }
 
 .highlight-cob-up {

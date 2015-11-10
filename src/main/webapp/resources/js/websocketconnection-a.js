@@ -52,7 +52,7 @@ function generateInterval (k) {
 function onSocketMessage(event) {
     if (event.data) {
         var receivedFeed = JSON.parse(event.data);
-        console.log("Received Object: " + JSON.stringify(receivedFeed));
+        //console.log("Received Object: " + JSON.stringify(receivedFeed));
 
         //angular.element(document.getElementById('AppCtrl')).scope().controller.revert()‌​;
         //console.log("End Received Object: " + JSON.stringify(receivedFeed));
