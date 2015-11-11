@@ -87,7 +87,7 @@ app.factory('MyService', function($q, $rootScope) {
                 delete callbacks[receivedFeed.callbackID];
             }
 
-
+            //TODO: THIS IS CALLING THE CONTROLLER FROM THE FACTORY, IT SHOULD BE THE OTHERWAY AROUND SINCE THE CONTROLLER LIVES AND DIES, FACTORY ALWAYS LIVES
             var scope = angular.element(document.getElementById("MainWrap")).scope();
             scope.setStagedProductData(receivedFeed.adjustedPrices);
             scope.updateStagedData();
