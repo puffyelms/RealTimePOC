@@ -3,8 +3,8 @@
 var app = angular.module('app', []);
 
 
-app.factory('MyService', function($q, $rootScope) {
-//angular.module('app').factory('MyService', ['$q', '$rootScope', function($q, $rootScope) {
+app.factory('WebSocketService', function($q, $rootScope) {
+
     // We return this object to anything injecting our service
     var Service = {};
     // Keep all pending requests here until they get responses
@@ -120,7 +120,7 @@ app.factory('MyService', function($q, $rootScope) {
     return Service;
 });
 
-app.controller('AppCtrl', function ($scope, MyService) {
+app.controller('AppCtrl', function ($scope, WebSocketService) {
     var vm = this;
 
     $scope.stagedProductGrid = {};
