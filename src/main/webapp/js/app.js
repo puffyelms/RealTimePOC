@@ -14,13 +14,50 @@ app.factory('MyService', function($q, $rootScope) {
     // Create our websocket object with the address to the websocket
     var ws = new WebSocket("ws://localhost:7001/MarketDataServer/dataSocket");
 
+    var attempts = 1;
+    var time = 0;
 
     ws.onopen = function(){
         console.log("Socket has been opened!");
+        // reset the tries back to 1 since we have a new connection opened.
+        attempts = 1;
+        $('#myModal').modal('hide');
     };
 
+    ws.onclose = function () {
+        console.log("In onclose");
+        time = generateInterval(attempts);
+
+        setTimeout(function () {
+            // We've tried to reconnect so increment the attempts by 1
+            attempts++;
+            $('#myModal').modal('show');
+
+            // Connection has closed so try to reconnect every 10 seconds.
+            createWebSocket();
+        }, time);
+
+    };
+
+    ws.onerror = function (event) {
+        console.log("In onerror: Error ", event);
+    };
+
+    // generate the interval to a random number between 0 and the maxInterval determined from above
+    function generateInterval (k) {
+        // If the generated interval is more than 30 seconds, truncate it down to 30 seconds
+        return Math.min(30, (Math.pow(2, k) - 1)) * 1000;
+    }
+
     ws.onmessage = function(message) {
-        listener(JSON.parse(message.data));
+
+        //listener(JSON.parse(message.data));
+
+        if (message.data) {
+            console.log("In onmessage: message= ", message.data);
+            listener(JSON.parse(message.data));
+        }
+
     };
 
     function sendRequest(request) {
@@ -37,14 +74,29 @@ app.factory('MyService', function($q, $rootScope) {
     }
 
     function listener(data) {
-        var messageObj = data;
-        console.log("Received data from websocket: ", messageObj);
-        // If an object exists with callback_id in our callbacks object, resolve it
-        if(callbacks.hasOwnProperty(messageObj.callback_id)) {
-            console.log(callbacks[messageObj.callback_id]);
-            $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
-            delete callbacks[messageObj.callbackID];
+
+        var receivedFeed = data;
+        console.log("Received data from websocket: ", receivedFeed);
+        if (receivedFeed.action === "add") {
+
+            //TODO: THIS NEEDS TO BE INCORPORATED... RIGHT NOW I'M NOT PASSING THE CALLBACK_ID
+            // If an object exists with callback_id in our callbacks object, resolve it
+            if(callbacks.hasOwnProperty(receivedFeed.callback_id)) {
+                console.log(callbacks[receivedFeed.callback_id]);
+                $rootScope.$apply(callbacks[receivedFeed.callback_id].cb.resolve(receivedFeed.data));
+                delete callbacks[receivedFeed.callbackID];
+            }
+
+
+            var scope = angular.element(document.getElementById("MainWrap")).scope();
+            scope.setStagedProductData(receivedFeed.adjustedPrices);
+            scope.updateStagedData();
+            scope.$apply(function () {
+                scope.updateStagedData();
+            })
+
         }
+
     }
     // This creates a new callback ID for a request
     function getCallbackId() {
