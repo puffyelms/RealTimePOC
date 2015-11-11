@@ -1,96 +1,74 @@
-var initial = {};
-initial['2.5'] = {
-    "coupon": 2.5, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 100, "cobPrice": 115}
-};
-initial['3.0'] = {
-    "coupon": 3.0, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 100, "cobPrice": 115}
-};
-initial['3.5'] = {
-    "coupon": 3.5, cellMonth1: {"currentPrice": 101, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 100, "cobPrice": 115}
-};
-initial['4.0'] = {
-    "coupon": 4.0, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 100, "cobPrice": 115}
-};
-initial['4.5'] = {
-    "coupon": 4.5, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 100, "cobPrice": 115}
-};
-initial['5.0'] = {
-    "coupon": 5.0, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 100, "cobPrice": 115}
-};
-initial['5.5'] = {
-    "coupon": 5.5, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 100, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 100, "cobPrice": 115}
-};
-
-
-var changed = {};
-changed['2.5'] = {
-    "coupon": 2.5, cellMonth1: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 99, "cobPrice": 115}
-};
-changed['3.0'] = {
-    "coupon": 3.0, cellMonth1: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 99, "cobPrice": 115}
-};
-changed['3.5'] = {
-    "coupon": 3.5, cellMonth1: {"currentPrice": 101, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 99, "cobPrice": 115}
-};
-changed['4.0'] = {
-    "coupon": 4.0, cellMonth1: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 99, "cobPrice": 115}
-};
-changed['4.5'] = {
-    "coupon": 4.5, cellMonth1: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 99, "cobPrice": 115}
-};
-changed['5.0'] = {
-    "coupon": 5.0, cellMonth1: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 99, "cobPrice": 115}
-};
-changed['5.5'] = {
-    "coupon": 5.5, cellMonth1: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth2: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth3: {"currentPrice": 99, "cobPrice": 115},
-    cellMonth4: {"currentPrice": 99, "cobPrice": 115}
-};
 
 
 var app = angular.module('app', []);
 
-app.controller('AppCtrl', function ($scope) {
+
+app.factory('MyService', function($q, $rootScope) {
+//angular.module('app').factory('MyService', ['$q', '$rootScope', function($q, $rootScope) {
+    // We return this object to anything injecting our service
+    var Service = {};
+    // Keep all pending requests here until they get responses
+    var callbacks = {};
+    // Create a unique callback ID to map requests to responses
+    var currentCallbackId = 0;
+    // Create our websocket object with the address to the websocket
+    var ws = new WebSocket("ws://localhost:7001/MarketDataServer/dataSocket");
+
+
+    ws.onopen = function(){
+        console.log("Socket has been opened!");
+    };
+
+    ws.onmessage = function(message) {
+        listener(JSON.parse(message.data));
+    };
+
+    function sendRequest(request) {
+        var defer = $q.defer();
+        var callbackId = getCallbackId();
+        callbacks[callbackId] = {
+            time: new Date(),
+            cb:defer
+        };
+        request.callback_id = callbackId;
+        console.log('Sending request', request);
+        ws.send(JSON.stringify(request));
+        return defer.promise;
+    }
+
+    function listener(data) {
+        var messageObj = data;
+        console.log("Received data from websocket: ", messageObj);
+        // If an object exists with callback_id in our callbacks object, resolve it
+        if(callbacks.hasOwnProperty(messageObj.callback_id)) {
+            console.log(callbacks[messageObj.callback_id]);
+            $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
+            delete callbacks[messageObj.callbackID];
+        }
+    }
+    // This creates a new callback ID for a request
+    function getCallbackId() {
+        currentCallbackId += 1;
+        if(currentCallbackId > 10000) {
+            currentCallbackId = 0;
+        }
+        return currentCallbackId;
+    }
+
+    // Define a "getter" for getting customer data
+    Service.getCustomers = function() {
+        var request = {
+            type: "get_customers"
+        }
+        // Storing in a variable for clarity on what sendRequest returns
+        var promise = sendRequest(request);
+        return promise;
+    }
+
+    return Service;
+});
+
+app.controller('AppCtrl', function ($scope, MyService) {
     var vm = this;
 
     $scope.stagedProductGrid = {};
@@ -176,6 +154,4 @@ app.directive('highlighter', function ($timeout) {
         }
     };
 });
-
-
 
