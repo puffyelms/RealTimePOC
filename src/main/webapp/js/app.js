@@ -17,31 +17,85 @@ app.factory('WebSocketService', function($q, $rootScope) {
     var attempts = 1;
     var time = 0;
 
-    ws.onopen = function(){
-        console.log("Socket has been opened!");
-        // reset the tries back to 1 since we have a new connection opened.
-        attempts = 1;
-        $('#myModal').modal('hide');
+
+    var initial = {};
+    initial['2.5'] = {
+        "coupon": 2.5, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth2: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth3: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth4: {"currentPrice": 100, "cobPrice": 115}
+    };
+    initial['3.0'] = {
+        "coupon": 3.0, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth2: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth3: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth4: {"currentPrice": 100, "cobPrice": 115}
+    };
+    initial['3.5'] = {
+        "coupon": 3.5, cellMonth1: {"currentPrice": 101, "cobPrice": 115},
+        cellMonth2: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth3: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth4: {"currentPrice": 100, "cobPrice": 115}
+    };
+    initial['4.0'] = {
+        "coupon": 4.0, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth2: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth3: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth4: {"currentPrice": 100, "cobPrice": 115}
+    };
+    initial['4.5'] = {
+        "coupon": 4.5, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth2: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth3: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth4: {"currentPrice": 100, "cobPrice": 115}
+    };
+    initial['5.0'] = {
+        "coupon": 5.0, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth2: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth3: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth4: {"currentPrice": 100, "cobPrice": 115}
+    };
+    initial['5.5'] = {
+        "coupon": 5.5, cellMonth1: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth2: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth3: {"currentPrice": 100, "cobPrice": 115},
+        cellMonth4: {"currentPrice": 100, "cobPrice": 115}
     };
 
-    ws.onclose = function () {
-        console.log("In onclose");
-        time = generateInterval(attempts);
+    function createWebSocket() {
+        console.log("In createWebSocket.  Attempting to connection... attempts=" + attempts + ", delay time=" + time);
+        var ws = new WebSocket("ws://localhost:7001/MarketDataServer/dataSocket");
 
-        setTimeout(function () {
-            // We've tried to reconnect so increment the attempts by 1
-            attempts++;
-            $('#myModal').modal('show');
+        ws.onopen = function(){
+            console.log("Socket has been opened!");
+            // reset the tries back to 1 since we have a new connection opened.
+            attempts = 1;
+            $('#myModal').modal('hide');
+        };
 
-            // Connection has closed so try to reconnect every 10 seconds.
-            createWebSocket();
-        }, time);
+        ws.onclose = function () {
+            console.log("In onclose");
+            time = generateInterval(attempts);
 
-    };
+            setTimeout(function () {
+                // We've tried to reconnect so increment the attempts by 1
+                attempts++;
+                $('#myModal').modal('show');
 
-    ws.onerror = function (event) {
-        console.log("In onerror: Error ", event);
-    };
+                // Connection has closed so try to reconnect every 10 seconds.
+                createWebSocket();
+            }, time);
+
+        };
+
+        ws.onerror = function (event) {
+            console.log("In onerror: Error ", event);
+        };
+
+        ws.onmessage = onSocketMessage;
+    }
+
+    createWebSocket();
 
     // generate the interval to a random number between 0 and the maxInterval determined from above
     function generateInterval (k) {
@@ -49,12 +103,12 @@ app.factory('WebSocketService', function($q, $rootScope) {
         return Math.min(30, (Math.pow(2, k) - 1)) * 1000;
     }
 
-    ws.onmessage = function(message) {
+    function onSocketMessage(message) {
 
         //listener(JSON.parse(message.data));
 
         if (message.data) {
-            console.log("In onmessage: message= ", message.data);
+            console.log("In onSocketMessage: message= ", message.data);
             listener(JSON.parse(message.data));
         }
 
@@ -117,6 +171,11 @@ app.factory('WebSocketService', function($q, $rootScope) {
         return promise;
     }
 
+    Service.getProductData = function() {
+
+        return angular.copy(initial);
+    }
+
     return Service;
 });
 
@@ -144,7 +203,9 @@ app.controller('AppCtrl', function ($scope, WebSocketService) {
         }
     };
 
-    vm.productGrid = angular.copy(initial);
+    vm.productGrid  = WebSocketService.getProductData()
+
+    //vm.productGrid = angular.copy(initial);
 
     vm.loadData = function loadData() {
         vm.productGrid = angular.copy(changed);

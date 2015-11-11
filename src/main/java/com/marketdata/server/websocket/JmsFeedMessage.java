@@ -56,7 +56,4 @@ public class JmsFeedMessage {
         return "JmsFeedMessage{" + "timestamp=" + timestamp + ", productName=" + productName + ", products=" + products + '}';
     }
 
-
-
-
 }

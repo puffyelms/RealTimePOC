@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.marketdata.server.mdb;
+package com.marketdata.server.messageserver;
 
 import com.marketdata.server.websocket.dataServer.qualifier.WSJMSMessage;
 import org.slf4j.Logger;

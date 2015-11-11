@@ -91,41 +91,24 @@ public class PricingDataSingleton {
         String coupon = newProduct.getCoupon();
 
         List<Product> productList = productMap.get(productName);
-        for (Product product : productList) {
+        productList.stream().filter(product -> product != null && product.getCoupon() != null && product.getCoupon().equals(coupon)).forEach(product -> {
 
-            if (product.getCoupon().equals(coupon)) {
-
-                if (newProduct.getPriceM1().isEmpty() == false) {
-                    product.setPriceM1(newProduct.getPriceM1());
-                } else {
-                    product.setTrendM1("same");
-                }
-
-                if (newProduct.getPriceM2().isEmpty() == false) {
-                    product.setPriceM2(newProduct.getPriceM2());
-                } else {
-                    product.setTrendM2("same");
-                }
-
-                if (newProduct.getPriceM3().isEmpty() == false) {
-                    product.setPriceM3(newProduct.getPriceM3());
-                } else {
-                    product.setTrendM3("same");
-                }
-
-                if (newProduct.getPriceM4().isEmpty() == false) {
-                    product.setPriceM4(newProduct.getPriceM4());
-                } else {
-                    product.setTrendM4("same");
-                }
-
-            } else {
-//                product.setTrendM1("same");
-//                product.setTrendM2("same");
-//                product.setTrendM3("same");
-//                product.setTrendM4("same");
+            if (!newProduct.getPriceM1().isEmpty()) {
+                product.setPriceM1(newProduct.getPriceM1());
             }
-        }
+
+            if (!newProduct.getPriceM2().isEmpty()) {
+                product.setPriceM2(newProduct.getPriceM2());
+            }
+
+            if (!newProduct.getPriceM3().isEmpty()) {
+                product.setPriceM3(newProduct.getPriceM3());
+            }
+
+            if (!newProduct.getPriceM4().isEmpty()) {
+                product.setPriceM4(newProduct.getPriceM4());
+            }
+        });
     }
 
 }

@@ -4,13 +4,12 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/enums/ProductName.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/utilities/StringUtilities.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/bean/NotificationManagedBean.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/domain/Product.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/domain/ProductSection.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/listener/HeartbeatServletContextListener.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/mdb/WebSocketMDB.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/JsonFeedHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/MessageProducerBean.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/WebSocketMDB.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/service/HeartBeatSingleton.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/service/PricingDataSingleton.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/Feed.java" charset="UTF-8" />
@@ -21,23 +20,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/qualifier/HeartBeatMessage.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/qualifier/WSJMSMessage.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/weblogic.xml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/clock.html" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/createPerson.xhtml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/css/handsontable.full.css" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/datatableHT.xhtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/jms-producer.xhtml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/js/handsontable.full.js" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/js/ngHandsontable.js" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/js/ngHandsontable.min.js" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/layout" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/notification.xhtml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/receivers.xhtml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/css/handsontable.full.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/css/mystylesheet.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/handsontable.full.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/websocket.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/websocketconnection.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/resources/js/whiteboard.js" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
