@@ -1,7 +1,4 @@
-
-
 var app = angular.module('app', []);
-
 
 app.factory('WebSocketService', function($q, $rootScope) {
 

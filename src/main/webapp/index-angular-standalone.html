@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css"/>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js" data-semver="1.3.15"></script>
-    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="js/angular-1.4.2.min.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap-3.3.4.min.js"></script>
 
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
@@ -51,28 +51,31 @@
         </div>
     </div>
 
+    <div id="productContainer" ng-cloak>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>coupon</th>
-            <th>Month 1</th>
-            <th>Month 2</th>
-            <th>Month 3</th>
-            <th>Month 4</th>
-        </tr>
-        </thead>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>coupon</th>
+                <th>Month 1</th>
+                <th>Month 2</th>
+                <th>Month 3</th>
+                <th>Month 4</th>
+            </tr>
+            </thead>
 
-        <tbody>
-        <tr data-ng-repeat="prices in ctrl.productGrid track by $index">
-            <td data-highlighter="prices">{{ prices.coupon | number:1 }}</td>
-            <td data-highlighter="prices.cellMonth1">{{  prices.cellMonth1.currentPrice | number:6 }}</td>
-            <td data-highlighter="prices.cellMonth2">{{  prices.cellMonth2.currentPrice | number:6 }}</td>
-            <td data-highlighter="prices.cellMonth3">{{  prices.cellMonth3.currentPrice | number:6 }}</td>
-            <td data-highlighter="prices.cellMonth4">{{  prices.cellMonth4.currentPrice | number:6 }}</td>
-        </tr>
-        </tbody>
-    </table>
+            <tbody>
+            <tr data-ng-repeat="prices in ctrl.productGrid track by $index">
+                <td data-highlighter="prices">{{ prices.coupon | number:1 }}</td>
+                <td data-highlighter="prices.cellMonth1">{{  prices.cellMonth1.currentPrice | number:6 }}</td>
+                <td data-highlighter="prices.cellMonth2">{{  prices.cellMonth2.currentPrice | number:6 }}</td>
+                <td data-highlighter="prices.cellMonth3">{{  prices.cellMonth3.currentPrice | number:6 }}</td>
+                <td data-highlighter="prices.cellMonth4">{{  prices.cellMonth4.currentPrice | number:6 }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
 
     <button type="button" data-ng-click="ctrl.loadData()" class="btn btn-primary">load new data</button>
     <button type="button" data-ng-click="ctrl.changeValue()" class="btn btn-default">change single value</button>
