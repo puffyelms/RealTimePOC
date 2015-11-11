@@ -5,7 +5,7 @@
  */
 package com.marketdata.server.websocket.dataServer;
 
-import com.marketdata.server.websocket.Feed;
+import com.marketdata.common.messagebeans.Feed;
 
 import javax.json.JsonObject;
 import javax.json.JsonReader;

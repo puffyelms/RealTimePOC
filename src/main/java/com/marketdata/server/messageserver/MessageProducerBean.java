@@ -1,8 +1,8 @@
 package com.marketdata.server.messageserver;
 
 import com.marketdata.common.enums.ProductName;
+import com.marketdata.common.messagebeans.JmsFeedMessage;
 import com.marketdata.server.domain.Product;
-import com.marketdata.server.websocket.JmsFeedMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.marketdata.server.websocket;
+package com.marketdata.common.messagebeans;
 
 import java.io.Serializable;
 
@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author timge_000
  */
 public class Feed implements Serializable{
+
     private String timestamp;
     private String tableToUpdate;
     private AdjustedPrices[] adjustedPrices;

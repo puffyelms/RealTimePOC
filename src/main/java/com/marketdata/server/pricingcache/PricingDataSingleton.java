@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.marketdata.server.service;
+package com.marketdata.server.pricingcache;
 
 import com.marketdata.common.enums.ProductName;
 import com.marketdata.server.domain.Product;

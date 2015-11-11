@@ -1,18 +1,16 @@
-package com.marketdata.server.websocket;
+package com.marketdata.common.messagebeans;
+
+import java.io.Serializable;
 
 /**
  * Created by timge on 10/19/2015.
  */
-public class AdjustedPrices
+public class AdjustedPrices implements Serializable
 {
     private String month1;
-
     private String month2;
-
     private String month3;
-
     private String month4;
-
     private String coupon;
 
     public AdjustedPrices(String coupon, String month1, String month2, String month3, String month4) {

@@ -5,9 +5,9 @@
  */
 package com.marketdata.server.messageserver;
 
+import com.marketdata.common.messagebeans.JmsFeedMessage;
 import com.marketdata.server.domain.Product;
-import com.marketdata.server.websocket.Feed;
-import com.marketdata.server.websocket.JmsFeedMessage;
+import com.marketdata.common.messagebeans.Feed;
 
 import javax.json.*;
 import javax.json.spi.JsonProvider;

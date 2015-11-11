@@ -5,8 +5,8 @@
  */
 package com.marketdata.server.websocket.dataServer;
 
-import com.marketdata.server.websocket.AdjustedPrices;
-import com.marketdata.server.websocket.Feed;
+import com.marketdata.common.messagebeans.AdjustedPrices;
+import com.marketdata.common.messagebeans.Feed;
 
 import javax.json.*;
 import javax.json.spi.JsonProvider;

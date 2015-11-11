@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/enums/ProductName.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/messagebeans/Feed.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/messagebeans/JmsFeedMessage.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/common/utilities/StringUtilities.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/domain/Product.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/domain/ProductSection.java" charset="UTF-8" />
@@ -10,10 +12,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/JsonFeedHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/MessageProducerBean.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/WebSocketMDB.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/pricingcache/PricingDataSingleton.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/service/HeartBeatSingleton.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/service/PricingDataSingleton.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/Feed.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/JmsFeedMessage.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/DataSocketDecoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/DataSocketEncoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/WebSocketDataServer.java" charset="UTF-8" />

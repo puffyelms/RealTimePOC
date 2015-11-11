@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.marketdata.server.websocket;
+package com.marketdata.common.messagebeans;
 
 import com.marketdata.server.domain.Product;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author timge_000
  */
-public class JmsFeedMessage {
+public class JmsFeedMessage implements Serializable {
     String timestamp;
     String productName;
     List<Product> products;
