@@ -176,14 +176,16 @@
             console.log("Received data from websocket: ", receivedFeed);
             if (receivedFeed.action === "add") {
 
+                $rootScope.$broadcast('websocketMsg', receivedFeed.data);
+
                 //TODO: THIS NEEDS TO BE INCORPORATED... RIGHT NOW I'M NOT PASSING THE CALLBACK_ID
                 // If an object exists with callback_id in our callbacks object, resolve it
-                if (callbacks.hasOwnProperty(receivedFeed.callback_id)) {
-                    console.log(callbacks[receivedFeed.callback_id]);
-//                    $rootScope.$apply(callbacks[receivedFeed.callback_id].cb.resolve(receivedFeed.data));
-                    $rootScope.$apply(callbacks[receivedFeed.callback_id].cb.resolve(angular.copy(receivedFeed.data)));
-                    delete callbacks[receivedFeed.callback_id];
-                }
+//                if (callbacks.hasOwnProperty(receivedFeed.callback_id)) {
+//                    console.log(callbacks[receivedFeed.callback_id]);
+////                    $rootScope.$apply(callbacks[receivedFeed.callback_id].cb.resolve(receivedFeed.data));
+//                    $rootScope.$apply(callbacks[receivedFeed.callback_id].cb.resolve(angular.copy(receivedFeed.data)));
+//                    delete callbacks[receivedFeed.callback_id];
+//                }
 
                 //TODO: THIS IS CALLING THE CONTROLLER FROM THE FACTORY, IT SHOULD BE THE OTHERWAY AROUND SINCE THE CONTROLLER LIVES AND DIES, FACTORY ALWAYS LIVES
                 //var scope = angular.element(document.getElementById("MainWrap")).scope();
@@ -258,6 +260,7 @@
 
     app.controller('AppCtrl', function ($scope, WebSocketService) {
         var vm = this;
+        $scope.productGrid = {};
 
         $scope.stagedProductGrid = {};
         $scope.customParams = {};
@@ -280,13 +283,25 @@
             }
         };
 
-        vm.productGrid = WebSocketService.getProductData()
-        console.log("vm.productGrid="+vm.productGrid);
+        WebSocketService.getProductData();
+        //    .then(function(promise1) {
+        //    console.log("promise1="+promise1);
+        //    vm.productGrid = angular.copy(promise1);
+        //    //vm.productGrid = promise1;
+        //});
+
+        $scope.$on('websocketMsg', function(event,data) {
+            console.log("data="+data);
+            $scope.productGrid = angular.copy(data);
+
+        })
+
+
         //vm.productGrid = angular.copy(initial);
 
-        vm.loadData = function loadData() {
-            vm.productGrid = angular.copy(changed);
-        };
+        //vm.loadData = function loadData() {
+        //    vm.productGrid = angular.copy(changed);
+        //};
 
         vm.changeValue = function changeValue() {
             vm.productGrid[0].month1 = 99;
