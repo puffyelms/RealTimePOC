@@ -13,7 +13,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/MessageProducerBean.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/messageserver/WebSocketMDB.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/pricingcache/PricingDataSingleton.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/service/HeartBeatSingleton.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/DataSocketDecoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/DataSocketEncoder.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/marketdata/server/websocket/dataServer/WebSocketDataServer.java" charset="UTF-8" />

@@ -67,8 +67,43 @@ public class WebSocketDataServer {
         }
     }
 
-//    @OnMessage
-//    public v
+    @OnMessage
+    public void processGreeting(String message, Session session) {
+        logger.info("Message from client received:" + message);
+
+//        Gson gson = new Gson();
+
+        String returnMessage =
+                "{"+
+                        "\"action\":\"add\","+
+                        "\"type\":\"sent_customers\","+
+                        "\"callback_id\":1,"+
+                        "\"data\": {"+
+                        "\"2.5\" : {"+
+                            "\"coupon\": 2.5,"+
+                            "\"cellMonth1\": {\"currentPrice\": 99, \"cobPrice\": 115},"+
+                            "\"cellMonth2\": {\"currentPrice\": 99, \"cobPrice\": 115},"+
+                            "\"cellMonth3\": {\"currentPrice\": 99, \"cobPrice\": 115},"+
+                            "\"cellMonth4\": {\"currentPrice\": 99, \"cobPrice\": 115}"+
+                        "},"+
+                        "\"3.0\" : {"+
+                            "\"coupon\": 3.0,"+
+                            "\"cellMonth1\": {\"currentPrice\": 99, \"cobPrice\": 115},"+
+                            "\"cellMonth2\": {\"currentPrice\": 99, \"cobPrice\": 115},"+
+                            "\"cellMonth3\": {\"currentPrice\": 99, \"cobPrice\": 115},"+
+                            "\"cellMonth4\": {\"currentPrice\": 99, \"cobPrice\": 115}"+
+                        "}"+
+                    "}"+
+                "}";
+
+        try {
+            session.getBasicRemote().sendObject(returnMessage);
+        } catch (IOException e) {
+            logger.error("processGreeting error caught: {}", e);
+        } catch (EncodeException e) {
+            logger.error("processGreeting error caught: {}", e);
+        }
+    }
 
     public static List<Session> getSessions() {
         return new ArrayList<>(allSessions);
