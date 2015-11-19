@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>MarketDataServer</title>
+
+
+    <link rel="stylesheet" href="css/external/bootstrap-3.3.4.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/external/wijmo/wijmo.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+    <link href="css/app-wijmo.css" rel="stylesheet" type="text/css" />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.5/less.min.js"></script>
+
+    <script src="js/external/angular-1.4.2.min.js"></script>
+    <script src="js/external/jquery-2.1.4.min.js"></script>
+    <script src="js/external/bootstrap-3.3.4.min.js"></script>
+    <script src="js/external/wijmo/wijmo.min.js"></script>
+    <script src="js/external/wijmo/wijmo.grid.min.js"></script>
+    <script src="js/external/wijmo/wijmo.angular.min.js"></script>
+
+    <script src="js/app-wijmo.js"></script>
+
+</head>
+
+<body ng-app="app-wijmo" ng-controller="appCtrl">
+
+    <!-- this is the grid -->
+    <wj-flex-grid items-source="data" control="flex" >
+        <wj-flex-grid-column header="Country" binding="country"></wj-flex-grid-column>
+        <wj-flex-grid-column header="Date" binding="date"></wj-flex-grid-column>
+        <wj-flex-grid-column header="Amount" binding="amount"></wj-flex-grid-column>
+        <wj-flex-grid-column header="Active" binding="active"></wj-flex-grid-column>
+    </wj-flex-grid>
+
+    <h1>Some footer stuff</h1>
+</body>
+</html>

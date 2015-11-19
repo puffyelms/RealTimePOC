@@ -290,12 +290,13 @@
         //    //vm.productGrid = promise1;
         //});
 
-        $scope.$on('websocketMsg', function(event,data) {
-            console.log("data="+data);
-            $scope.productGrid = angular.copy(data);
+        //$scope.$on('websocketMsg', function(event,data) {
+        //    console.log("data="+data);
+        //    $scope.productGrid = angular.copy(data);
+        //
+        //})
 
-        })
-
+        vm.productGrid = angular.copy(initial);
 
         //vm.productGrid = angular.copy(initial);
 
