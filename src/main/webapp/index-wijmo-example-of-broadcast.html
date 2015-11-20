@@ -17,18 +17,18 @@
     <script src="js/external/wijmo/wijmo.grid.min.js"></script>
     <script src="js/external/wijmo/wijmo.angular.min.js"></script>
 
-    <script src="js/app-wijmo2.js"></script>
+    <script src="js/app-wijmo.js"></script>
 
 </head>
 
-<body ng-app="app-wijmo2" ng-controller="appCtrl2" >
+<body ng-app="app-wijmo" ng-controller="appCtrl2" >
 <h1>What?</h1>
 
 <dropdown placeholder="Colour..." list="colours" selected="colour" property="name"></dropdown>
 
     <!-- this is the grid -->
     <wj-flex-grid items-source="data" auto-generate-columns="false" headers-visibility="Column"  >
-        <wj-flex-grid-column ng-repeat="col in statisticsColumns"  header="{{col.header}}" binding="{{col.binding}}">
+        <wj-flex-grid-column ng-repeat="col in payupGridColumnDefinition"  header="{{col.header}}" binding="{{col.binding}}">
         </wj-flex-grid-column>
     </wj-flex-grid>
 
