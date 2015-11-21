@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <meta charset="utf-8"/>
+    <title>MarketDataServer</title>
+
+
+    <link rel="stylesheet" href="css/external/bootstrap-3.3.4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/external/wijmo/wijmo.css"/>
+    <link href="css/app-wijmo.css" rel="stylesheet" type="text/css"/>
+
+
+    <script src="js/external/angular-1.4.2.min.js"></script>
+    <script src="js/external/angular-resource-1.4.2.min.js"></script>
+    <script src="js/external/jquery-2.1.4.min.js"></script>
+    <!--<script src="js/external/bootstrap-3.3.4.min.js"></script>-->
+    <script src="js/external/wijmo/wijmo.min.js"></script>
+    <!--<script src="http://cdn.wijmo.com/5.latest/controls/wijmo.min.js"></script>-->
+
+    <script src="js/external/wijmo/wijmo.grid.min.js"></script>
+    <script src="js/external/wijmo/wijmo.input.min.js"></script>
+    <!--<script src="http://cdn.wijmo.com/5.latest/controls/wijmo.input.min.js"></script>-->
+    <script src="js/external/wijmo/wijmo.angular.min.js"></script>
+    <!--<script src="http://cdn.wijmo.com/5.latest/interop/angular/wijmo.angular.min.js"></script>-->
+
+
+    <script src="js/app-wijmo2.js"></script>
+    <script src="js/app-wijmo-services.js"></script>
+    <!--<script src="js/app-wijmo-bsdropdown-directive.js"></script>-->
+
+</head>
+
+<body ng-app="app-wijmo2" ng-controller="appCtrl3">
+    <h1>Filter</h1>
+
+    <div>
+
+        <div style="float: left; margin-right: 5px;">
+            <wj-combo-box
+                    ng-hide="false"
+                    ng-disabled="false"
+                    required="false"
+                    items-source="productGroupList"
+                    selected-item="productGroupSelected"
+                    is-editable="false"
+                    placeholder="Loading...">
+            </wj-combo-box>
+
+        </div>
+
+        <div  style="float: left; margin-right: 5px;">
+            <wj-combo-box
+                    ng-hide="false"
+                    ng-disabled="false"
+                    required="false"
+                    items-source="couponList"
+                    selected-item="couponListMinSelected"
+                    is-editable="false"
+                    placeholder="Loading...">
+            </wj-combo-box>
+        </div>
+
+        <div  style="float: left; margin-right: 5px;">
+            <wj-combo-box
+                    ng-hide="false"
+                    ng-disabled="false"
+                    required="false"
+                    items-source="couponList"
+                    selected-item="couponListMaxSelected"
+                    is-editable="false"
+                    placeholder="Loading...">
+            </wj-combo-box>
+        </div>
+
+    </div>
+    <div style="clear:both; margin-bottom: 20px;"></div>
+
+    <div>
+        <wj-flex-grid items-source="payupGridData" auto-generate-columns="false" headers-visibility="Column"
+                      is-read-only="true" allowSorting="false">
+            <wj-flex-grid-column ng-repeat="col in payupGridColumnsDefinition" header="{{col.header}}"
+                                 binding="{{col.binding}}">
+            </wj-flex-grid-column>
+        </wj-flex-grid>
+    </div>
+
+<div>
+    <button ng-click="refreshDataClick()">Refresh Data</button>
+    <p>Selected min item: {{smallCouponListItem}}</p>
+    <p>Selected product Group: {{productGroupSelected}}</p>
+
+</div>
+
+</body>
+</html>

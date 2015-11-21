@@ -1,7 +1,7 @@
 (function() {
 
     //app.factory('dataService',['$q', '$timeout', '$http', dataService]);
-    angular.module('app-wijmo')
+    angular.module('app-wijmo2')
         .factory('dataService',['$q', '$timeout', '$http', dataService]);
 
     function dataService($q, $timeout, $http) {
@@ -37,7 +37,7 @@
 
             return $http({
                 method: 'GET',
-                url: 'http://localhost:3000/gridData',
+                url: 'http://localhost:3000/refreshGrid',
                 headers: {
                     'PS-DataLogger-Version': '1.01'
                 }

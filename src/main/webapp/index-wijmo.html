@@ -13,9 +13,10 @@
     <script src="js/external/angular-1.4.2.min.js"></script>
     <script src="js/external/angular-resource-1.4.2.min.js"></script>
     <script src="js/external/jquery-2.1.4.min.js"></script>
-    <script src="js/external/bootstrap-3.3.4.min.js"></script>
+    <!--<script src="js/external/bootstrap-3.3.4.min.js"></script>-->
     <script src="js/external/wijmo/wijmo.min.js"></script>
     <script src="js/external/wijmo/wijmo.grid.min.js"></script>
+    <script src="js/external/wijmo/wijmo.input.min.js"></script>
     <script src="js/external/wijmo/wijmo.angular.min.js"></script>
 
     <script src="js/app-wijmo.js"></script>
@@ -29,16 +30,16 @@
 
 <div style="margin-bottom: 20px;"></div>
     <div>
-        <div style="float: left; margin-right: 5px;">
-            <bs-dropdown data-menu-type="button" select-val="payupDashboardCtrl.selectedProductGroup = selectedVal"
-                         preselected-item="payupDashboardCtrl.selectedProductGroup"
-                         data-dropdown-data="payupDashboardCtrl.viewableProductGroups"></bs-dropdown>
-        </div>
+        <!--<div style="float: left; margin-right: 5px;">-->
+            <!--<bs-dropdown data-menu-type="button" select-val="payupDashboardCtrl.selectedProductGroup = selectedVal"-->
+                         <!--preselected-item="payupDashboardCtrl.selectedProductGroup"-->
+                         <!--data-dropdown-data="payupDashboardCtrl.viewableProductGroups"></bs-dropdown>-->
+        <!--</div>-->
 
-        <div style="float: left; margin-right: 5px;">
-            <bs-dropdown data-menu-type="button" select-val="payupDashboardCtrl.selectedCouponMaximum = selectedVal"
-                         preselected-item="payupDashboardCtrl.selectedCouponMaximum" data-dropdown-data="payupDashboardCtrl.couponMaximums"></bs-dropdown>
-        </div>
+        <!--<div style="float: left; margin-right: 5px;">-->
+            <!--<bs-dropdown data-menu-type="button" select-val="payupDashboardCtrl.selectedCouponMaximum = selectedVal"-->
+                         <!--preselected-item="payupDashboardCtrl.selectedCouponMaximum" data-dropdown-data="payupDashboardCtrl.couponMaximums"></bs-dropdown>-->
+        <!--</div>-->
         <!--<div style="float: left; margin-right: 5px;">-->
             <!--<bs-dropdown data-menu-type="button" select-val="payupDashboardCtrl.selectedCouponMinimum = selectedVal"-->
                          <!--preselected-item="payupDashboardCtrl.selectedCouponMinimum" data-dropdown-data="payupDashboardCtrl.couponMinimums"></bs-dropdown>-->
@@ -46,7 +47,45 @@
     </div>
     <div>
         <div style="clear:both; margin-bottom: 20px;"></div>
-        <!-- this is the grid -->
+
+        <div>
+            <p>Using the menu as a value picker:</p>
+            <wj-menu header="Min Coupon" value="couponmin">
+            <!--<wj-menu header="Min Coupon" value="payupDashboardCtrl.selectedCouponMinimum"> -->
+                <!-- item-clicked="countrySelected(s, e)" -->
+
+
+                <!--<wj-menu-item ng-repeat="c in couponlisted">{{c}}</wj-menu-item>-->
+                <wj-menu-item ng-repeat="c in payupDashboardCtrl.couponMinimums">{{c.name}}</wj-menu-item>
+
+                <!--<wj-menu-item value="1.0">1.0</wj-menu-item>-->
+                <!--<wj-menu-item value="1.5">1.5</wj-menu-item>-->
+                <!--<wj-menu-item value="2.0">2.0</wj-menu-item>-->
+                <!--<wj-menu-item value="2.5">2.5</wj-menu-item>-->
+                <!--<wj-menu-item value="3.0">3.0</wj-menu-item>-->
+                <!--<wj-menu-item value="3.5">3.5</wj-menu-item>-->
+                <!--<wj-menu-item value="4.0">4.0</wj-menu-item>-->
+            </wj-menu>
+        </div>
+        <div>
+            <p>Using the menu as a value picker2:</p>
+            <wj-menu header="Min Coupon" value="couponmin2">
+                <!--<wj-menu header="Min Coupon" value="payupDashboardCtrl.selectedCouponMinimum"> -->
+                <!-- item-clicked="countrySelected(s, e)" -->
+
+
+                <wj-menu-item ng-repeat="c in couponminscope2">{{c.name}}</wj-menu-item>
+                <!--<wj-menu-item ng-repeat="c in payupDashboardCtrl.couponMinimums">{{c.name}}</wj-menu-item>-->
+
+                <!--<wj-menu-item value="1.0">1.0</wj-menu-item>-->
+                <!--<wj-menu-item value="1.5">1.5</wj-menu-item>-->
+                <!--<wj-menu-item value="2.0">2.0</wj-menu-item>-->
+                <!--<wj-menu-item value="2.5">2.5</wj-menu-item>-->
+                <!--<wj-menu-item value="3.0">3.0</wj-menu-item>-->
+                <!--<wj-menu-item value="3.5">3.5</wj-menu-item>-->
+                <!--<wj-menu-item value="4.0">4.0</wj-menu-item>-->
+            </wj-menu>
+        </div>
         <div class="btn-group" role="group" aria-label="...">
             <button type="button" class="btn btn-default">Market View</button>
             <button type="button" class="btn btn-default">Cash View</button>

@@ -9,6 +9,14 @@
 
         var vm = this;
 
+        // variable bound to the value picker menu
+
+
+
+        $scope.couponlisted = [
+            '1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0'
+        ];
+        $scope.couponmin = '1.0';
         vm.selectedTestAccount = null;
         vm.testAccounts = [];
 
@@ -34,7 +42,8 @@
         }];
         vm.selectedCouponMaximum = null;
 
-
+        $scope.couponminscope2 = [];
+        $scope.couponmin2 = null;
 
         dataService.getPayupGridTotalDefault()
             .then(getPayupGridTotalDefaultSuccess, null, getNotification)
@@ -44,6 +53,8 @@
         function getPayupGridTotalDefaultSuccess(allData) {
             $scope.data = new wijmo.collections.CollectionView(allData.gridData);
             $scope.isDisabled = false;
+
+            $scope.couponmin = 1.0;
 
             vm.couponMinimums = allData.couponList;
             vm.selectedCouponMinimum = 2;
@@ -57,6 +68,11 @@
 
             vm.viewableProductGroups = allData.options;
             vm.selectedProductGroup = 1;
+
+            $scope.couponminscope2 = allData.couponList;
+            $scope.couponmin2 = 'TIM';
+            //$scope.$apply('couponmin2');
+
         }
 
         function getGridDataSuccess(gridData) {
@@ -84,7 +100,7 @@
 
 
         //Column headers
-        $scope.payupGridColumnDefinition = [
+        $scope.payupGridColumnsDefinition = [
             {
                 header: 'Coupon',
                 binding: 'country'
