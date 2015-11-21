@@ -31,65 +31,67 @@
 </head>
 
 <body ng-app="app-wijmo2" ng-controller="appCtrl3">
-    <h1>Filter</h1>
+    <div style="margin: 10px;">
+        <div>
 
-    <div>
+            <div style="float: left; margin-right: 5px; width:120px;">
+                <wj-combo-box
+                        ng-hide="false"
+                        ng-disabled="false"
+                        required="false"
+                        items-source="productGroupList"
+                        selected-item="productGroupSelected"
+                        is-editable="false"
+                        placeholder="Loading...">
+                </wj-combo-box>
 
-        <div style="float: left; margin-right: 5px;">
-            <wj-combo-box
-                    ng-hide="false"
-                    ng-disabled="false"
-                    required="false"
-                    items-source="productGroupList"
-                    selected-item="productGroupSelected"
-                    is-editable="false"
-                    placeholder="Loading...">
-            </wj-combo-box>
+            </div>
+
+            <div  style="float: left; margin-right: 5px; width:75px;">
+                <wj-combo-box
+                        ng-hide="false"
+                        ng-disabled="false"
+                        required="false"
+                        items-source="couponList"
+                        selected-item="couponListMinSelected"
+                        is-editable="false"
+                        placeholder="Loading...">
+                </wj-combo-box>
+            </div>
+
+            <div  style="float: left; margin-right: 5px; width:75px;">
+                <wj-combo-box
+                        ng-hide="false"
+                        ng-disabled="false"
+                        required="false"
+                        items-source="couponList"
+                        selected-item="couponListMaxSelected"
+                        is-editable="false"
+                        placeholder="Loading...">
+                </wj-combo-box>
+            </div>
+
+            <div style="float: left; margin-right: 5px;">
+                <button ng-click="refreshDataClick()">Refresh Data</button>
+            </div>
 
         </div>
+        <div style="clear:both; margin-bottom: 15px;"></div>
 
-        <div  style="float: left; margin-right: 5px;">
-            <wj-combo-box
-                    ng-hide="false"
-                    ng-disabled="false"
-                    required="false"
-                    items-source="couponList"
-                    selected-item="couponListMinSelected"
-                    is-editable="false"
-                    placeholder="Loading...">
-            </wj-combo-box>
+        <div>
+            <wj-flex-grid items-source="payupGridData" auto-generate-columns="false" headers-visibility="Column"
+                          is-read-only="true" allowSorting="false">
+                <wj-flex-grid-column ng-repeat="col in payupGridColumnsDefinition" header="{{col.header}}"
+                                     binding="{{col.binding}}">
+                </wj-flex-grid-column>
+            </wj-flex-grid>
         </div>
-
-        <div  style="float: left; margin-right: 5px;">
-            <wj-combo-box
-                    ng-hide="false"
-                    ng-disabled="false"
-                    required="false"
-                    items-source="couponList"
-                    selected-item="couponListMaxSelected"
-                    is-editable="false"
-                    placeholder="Loading...">
-            </wj-combo-box>
+        <div>
+            <p>Selected product Group: {{productGroupSelected}}</p>
+            <p>Selected min item: {{couponListMinSelected}}</p>
+            <p>Selected max item: {{couponListMaxSelected}}</p>
         </div>
-
     </div>
-    <div style="clear:both; margin-bottom: 20px;"></div>
-
-    <div>
-        <wj-flex-grid items-source="payupGridData" auto-generate-columns="false" headers-visibility="Column"
-                      is-read-only="true" allowSorting="false">
-            <wj-flex-grid-column ng-repeat="col in payupGridColumnsDefinition" header="{{col.header}}"
-                                 binding="{{col.binding}}">
-            </wj-flex-grid-column>
-        </wj-flex-grid>
-    </div>
-
-<div>
-    <button ng-click="refreshDataClick()">Refresh Data</button>
-    <p>Selected min item: {{smallCouponListItem}}</p>
-    <p>Selected product Group: {{productGroupSelected}}</p>
-
-</div>
 
 </body>
 </html>

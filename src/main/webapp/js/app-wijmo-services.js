@@ -6,26 +6,25 @@
 
     function dataService($q, $timeout, $http) {
         return {
-            getPayupGridTotalDefault: getPayupGridTotalDefault,
-            getCouponList: getCouponList,
+            getFullPageLoad: getFullPageLoad,
             getGridData: getGridData
         };
 
 
-        function getPayupGridTotalDefault() {
+        function getFullPageLoad() {
 
             return $http({
                 method: 'GET',
-                url: 'http://localhost:3000/filterValues',
+                url: 'http://localhost:3000/fullPageLoad',
                 headers: {
                     'PS-DataLogger-Version': '1.01'
                 }
             })
-                .then(sendPayupGridTotalDefaultResponseData)
-                .catch(sendPayupGridTotalDefaultError);
+                .then(sendFullPageLoadResponseData)
+                .catch(sendFullPageLoadError);
         }
 
-        function sendPayupGridTotalDefaultResponseData(response) {
+        function sendFullPageLoadResponseData(response) {
             console.log("Loading Grid Data");
 
             return response.data;
@@ -33,7 +32,7 @@
 
 
 
-        function getGridData() {
+        function getGridData( minCoupon, maxCoupon) {
 
             return $http({
                 method: 'GET',
@@ -52,33 +51,8 @@
             return response.data;
         }
 
-
-        function getCouponList() {
-
-            return $http({
-                method: 'GET',
-                url: 'http://localhost:3000/filterValues',
-                headers: {
-                    'PS-CouponLogger-Version': '1.01'
-                }
-            })
-                .then(sendCouponListResponseData)
-                .catch(sendCouponListError);
-        }
-        function sendCouponListResponseData(response) {
-            console.log("response.data.getCouponList="+response.data.couponList);
-            return response.data.couponList;
-        }
-
-        function sendResponseData(response) {
-            return response.data;
-        }
-
-        function sendPayupGridTotalDefaultError(response) {
+        function sendFullPageLoadError(response) {
             return $q.reject('Error retrieving coupon list. (HTTP status: ' + response.status + ')');
-        }
-        function sendCouponListError(response) {
-            return $q.reject('Error retrieving coupon list. (HTTP status: ' +response.status + ')' );
         }
         function sendGridDataError(response) {
             return $q.reject('Error retrieving grid data. (HTTP status: ' +response.status + ')' );

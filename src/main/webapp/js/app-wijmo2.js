@@ -19,18 +19,18 @@
             $scope.couponListMinSelected = "";
             $scope.couponListMaxSelected = "";
 
-            dataService.getPayupGridTotalDefault()
-                .then(getPayupGridTotalDefaultSuccess, null, getNotification)
+            dataService.getFullPageLoad()
+                .then(getFullPageLoadSuccess, null, getNotification)
                 .catch(errorCallback)
-                .finally(getPayupGridTotalDefaultComplete);
+                .finally(getFullPageLoadComplete);
 
-            function getPayupGridTotalDefaultSuccess(allData) {
+            function getFullPageLoadSuccess(allData) {
 
                 $scope.payupGridColumnsDefinition = allData.gridColumns;
                 $scope.payupGridData = new wijmo.collections.CollectionView(allData.gridData);
                 $scope.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
 
-                $scope.couponList = allData.smallCouponList;
+                $scope.couponList = allData.couponList;
                 $scope.couponListMinSelected = allData.minCoupon;
                 $scope.couponListMaxSelected = allData.maxCoupon;
 
@@ -42,9 +42,8 @@
                 console.log('Promise Notifcation:' + notification);
             }
 
-            function getPayupGridTotalDefaultComplete() {
-                console.log('getPayupGridTotalDefault has completed');
-                //$scope.couponMinSelected = allData.couponList[0].name;
+            function getFullPageLoadComplete() {
+                console.log('getFullPageLoadComplete has completed');
             }
 
             function errorCallback(errorMsg) {
@@ -70,25 +69,27 @@
 
             function getGridDataComplete() {
                 console.log('getGridDataComplete has completed');
-                //$scope.couponMinSelected = allData.couponList[0].name;
             }
 
-
-
-            // handle menu clicks: this method gets invoked when the menu's itemClicked event fires
-            //$scope.menuItemClicked = function (sender, args) {
-            //    var menu = sender;
-            //    alert('Thanks for selecting option ' + menu.selectedIndex + ' from menu **' + menu.header + '**!');
-            //}
-
-
-
-            //$scope.updateMinCoupon = function() {
-            //    $scope.couponMinSelected = 1.0;
-            //    console.log("coupon min is now: "+$scope.couponMinSelected);
-            //}
     });
+/*
 
+Try this first:
+https://siddii.github.io/angular-timer/examples.html#/angularjs-polling-timer-source
+ http://plnkr.co/edit/4es4Sz?p=preview
+
+ You should be calling the tick function in the callback for query.
+
+ function dataCtrl($scope, $timeout, Data) {
+ $scope.data = [];
+
+ (function tick() {
+ $scope.data = Data.query(function(){
+ $timeout(tick, 1000);
+ });
+ })();
+ };
+ */
 
 
 }());
