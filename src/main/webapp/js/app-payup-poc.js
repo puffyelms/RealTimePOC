@@ -1,7 +1,7 @@
 (function() {
 
     // declare app module
-    angular.module('app-wijmo', ['wj']);
+    angular.module('appPayupPoc', ['wj']);
 
 
 

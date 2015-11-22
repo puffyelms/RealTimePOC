@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app-wijmo')
+    angular.module('appPayupPoc')
         .factory('dataService',['$q', '$timeout', '$http', dataService]);
 
     function dataService($q, $timeout, $http) {

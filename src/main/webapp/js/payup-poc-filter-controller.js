@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app-wijmo')
+    angular.module('appPayupPoc')
         .controller('appCtrl', function appCtrl($scope, dataService) {
 
             //Column headers

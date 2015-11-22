@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app-wijmo')
+    angular.module('appPayupPoc')
         .directive('fmFilterDropdown', function() {
             return {
                 scope: {

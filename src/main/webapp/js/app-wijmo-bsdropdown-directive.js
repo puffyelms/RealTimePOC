@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app-wijmo')
+    angular.module('appPayupPocc')
         .directive('bsDropdown', function ($compile) {
             return {
                 restrict: 'E',
