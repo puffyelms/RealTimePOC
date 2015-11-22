@@ -1,6 +1,4 @@
 (function() {
-
-    //app.factory('dataService',['$q', '$timeout', '$http', dataService]);
     angular.module('app-wijmo')
         .factory('dataService',['$q', '$timeout', '$http', dataService]);
 
@@ -58,6 +56,4 @@
             return $q.reject('Error retrieving grid data. (HTTP status: ' +response.status + ')' );
         }
     };
-
-
 }());
