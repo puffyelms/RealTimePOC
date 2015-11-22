@@ -1,7 +1,7 @@
 (function() {
 
     //app.factory('dataService',['$q', '$timeout', '$http', dataService]);
-    angular.module('app-wijmo2')
+    angular.module('app-wijmo')
         .factory('dataService',['$q', '$timeout', '$http', dataService]);
 
     function dataService($q, $timeout, $http) {

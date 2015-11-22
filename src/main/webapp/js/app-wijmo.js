@@ -1,167 +1,119 @@
 (function() {
 
     // declare app module
-    var app = angular.module('app-wijmo', ['wj']);
+    angular.module('app-wijmo', ['wj']);
 
 
     // app controller provides data
-    app.controller('appCtrl2', function appCtrl($scope, dataService) {
+    angular.module('app-wijmo')
+        .controller('appCtrl3', function appCtrl($scope, dataService) {
 
-        var vm = this;
+            //Column headers
+            $scope.payupGridColumnsDefinition = [];
+            $scope.payupGridData = [];
 
-        // variable bound to the value picker menu
+            $scope.productGroupList = [];
+            $scope.productGroupSelected = "";
 
+            $scope.couponList = [];
+            $scope.couponListMinSelected = "";
+            $scope.couponListMaxSelected = "";
 
-
-        $scope.couponlisted = [
-            '1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0'
-        ];
-        $scope.couponmin = '1.0';
-        vm.selectedTestAccount = null;
-        vm.testAccounts = [];
-
-
-        //DropDown ProductGroup items
-        vm.viewableProductGroups = [
-            {
-                id: 1,
-                name: "Loading..."
-            }
-        ];
-        vm.selectedProductGroup = null;
-
-        vm.couponMinimums = [{
-            id: 1,
-            name: "Loading..."
-        }];
-        vm.selectedCouponMinimum = null;
-
-        vm.couponMaximums = [{
-            id: 1,
-            name: "Loading..."
-        }];
-        vm.selectedCouponMaximum = null;
-
-        $scope.couponminscope2 = [];
-        $scope.couponmin2 = null;
-
-        dataService.getPayupGridTotalDefault()
-            .then(getPayupGridTotalDefaultSuccess, null, getNotification)
-            .catch(errorCallback)
-            .finally(getPayupGridTotalDefaultComplete);
-
-        function getPayupGridTotalDefaultSuccess(allData) {
-            $scope.data = new wijmo.collections.CollectionView(allData.gridData);
-            $scope.isDisabled = false;
-
-            $scope.couponmin = 1.0;
-
-            vm.couponMinimums = allData.couponList;
-            vm.selectedCouponMinimum = 2;
-            //$scope.doSelect(2);
-
-            vm.couponMaximums = allData.couponList;
-            vm.selectedCouponMaximum = 4;
-
-            vm.testAccounts =  allData.couponList;
-            vm.selectedTestAccount = 1.5;
-
-            vm.viewableProductGroups = allData.options;
-            vm.selectedProductGroup = 1;
-
-            $scope.couponminscope2 = allData.couponList;
-            $scope.couponmin2 = 'TIM';
-            //$scope.$apply('couponmin2');
-
-        }
-
-        function getGridDataSuccess(gridData) {
-            $scope.data = new wijmo.collections.CollectionView(gridData);
-            $scope.isDisabled = false;
-            //$scope.$apply('data');
-        }
-
-        function getNotification(notification) {
-            console.log('Promise Notifcation:' + notification);
-        }
-
-        function getPayupGridTotalDefaultComplete() {
-            console.log('getPayupGridTotalDefault has completed');
-        }
-
-        function getGridDataComplete() {
-            console.log('getGridData has completed');
-        }
-
-        function errorCallback(errorMsg) {
-            console.log('Error message:' + errorMsg);
-        }
-
-
-
-        //Column headers
-        $scope.payupGridColumnsDefinition = [
-            {
-                header: 'Coupon',
-                binding: 'country'
-            },
-            {
-                header: '2.0',
-                binding: 'sales'
-            }
-        ];
-        var countries = 'US,Germany,UK,Japan,Italy,Greece'.split(','),
-            data = [];
-        //Just make it so the grid isn't empty before the data comes back;
-        //for (var i = 0; i < 1; i++) {
-            data.push({
-                country: "Loading...",
-                downloads: 0,
-                sales: 0,
-                expenses: 0
-            });
-        //}
-
-        //$scope.init = function (s, e) {
-        //    //initializeColumns(s);
-        //
-        //    //for (var i = 0; i < 1; i++) {
-        //    var hr = new wijmo.grid.Row();
-        //    s.columnHeaders.rows.push(hr);
-        //    //}
-        //
-        //}
-
-        //// initialize the columns on a FlexGrid
-        //function initializeColumns(flex) {
-        //    flex.initializ({
-        //        columns: [
-        //            {binding: 'country', header: 'Country'},
-        //            {binding: 'sales', header: 'Sales'},
-        //            {binding: 'expenses', header: 'Expenses'},
-        //            {binding: 'downloads', header: 'Downloads'}
-        //        ]
-        //    });
-        //}
-
-        $scope.isDisabled = false;
-
-        $scope.refreshDataClick = function () {
-            $scope.isDisabled = true;
-            dataService.getGridData()
-                .then(getGridDataSuccess, null, getNotification)
+            dataService.getFullPageLoad()
+                .then(getFullPageLoadSuccess, null, getNotification)
                 .catch(errorCallback)
-                .finally(getGridDataComplete);
-        };
+                .finally(getFullPageLoadComplete);
 
-        $scope.updateMinCoupon = function() {
-            console.log("coupon min is now: "+vm.selectedTestAccount);
-        }
+            function getFullPageLoadSuccess(allData) {
 
-        // expose data as a CollectionView to get events
-        $scope.data = new wijmo.collections.CollectionView(data);
+                $scope.payupGridColumnsDefinition = allData.gridColumns;
+                $scope.payupGridData = new wijmo.collections.CollectionView(allData.gridData);
+                $scope.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
+
+                $scope.couponList = allData.couponList;
+                $scope.couponListMinSelected = allData.minCoupon;
+                $scope.couponListMaxSelected = allData.maxCoupon;
+
+                $scope.productGroupList = allData.options;
+                $scope.productGroupSelected = allData.options[0];
+
+            }
+            function getNotification(notification) {
+                console.log('Promise Notifcation:' + notification);
+            }
+
+            function getFullPageLoadComplete() {
+                console.log('getFullPageLoadComplete has completed');
+            }
+
+            function errorCallback(errorMsg) {
+                console.log('Error message:' + errorMsg);
+            }
+
+
+            $scope.refreshDataClick = function () {
+                dataService.getGridData()
+                    .then(getGridDataSuccess, null, getNotification)
+                    .catch(errorCallback)
+                    .finally(getGridDataComplete);
+            };
+
+            function getGridDataSuccess(refreshGridData) {
+
+                $scope.payupGridColumnsDefinition = refreshGridData.gridColumns;
+                $scope.payupGridData = new wijmo.collections.CollectionView(refreshGridData.gridData);
+                $scope.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
+
+                //$scope.$apply('data');
+            }
+
+            function getGridDataComplete() {
+                console.log('getGridDataComplete has completed');
+            }
+
     });
 
+    angular.module('app-wijmo')
+        .directive('fmFilterDropdown', function() {
+            return {
+                scope: {
+                  dropdownList : '=',
+                  dropdownSelected : '=',
+                  dropdownLabel : '@',
+                  dropdownWidth : '@dropdownWidth'
+                },
+                templateUrl: "templates/fmFilterDropdown.html",
+                restrict: 'E',
+                controller: function($scope) {
+                    console.log();
+                    $scope.dropdownStyleWidth = "";
+                    if ($scope.dropdownWidth != null) {
+                        $scope.dropdownStyleWidth = "width:" + $scope.dropdownWidth;
+                    }
+
+                }
+            }
+
+    });
+
+    /*
+
+Try this first:
+https://siddii.github.io/angular-timer/examples.html#/angularjs-polling-timer-source
+ http://plnkr.co/edit/4es4Sz?p=preview
+
+ You should be calling the tick function in the callback for query.
+
+ function dataCtrl($scope, $timeout, Data) {
+ $scope.data = [];
+
+ (function tick() {
+ $scope.data = Data.query(function(){
+ $timeout(tick, 1000);
+ });
+ })();
+ };
+ */
 
 
 }());
