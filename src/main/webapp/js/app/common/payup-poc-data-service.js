@@ -30,7 +30,7 @@
 
 
 
-        function getGridData( minCoupon, maxCoupon) {
+        function getGridData( product, minCoupon, maxCoupon) {
 
             return $http({
                 method: 'GET',
