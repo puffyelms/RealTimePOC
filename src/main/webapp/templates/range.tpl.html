@@ -1,0 +1,6 @@
+<div class="btn-group " data-toggle="buttons">
+    <label class="btn btn-default"
+           ng-repeat="option in options"
+           ng-class="{active:option.id==model.range_id}"
+           ng-click="activate(option.id)"><input type="radio"></input>{{option.label}}</label>
+</div>

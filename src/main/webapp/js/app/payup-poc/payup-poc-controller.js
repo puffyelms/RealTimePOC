@@ -13,6 +13,14 @@
             $scope.couponListMinSelected = "";
             $scope.couponListMaxSelected = "";
 
+            $scope.rangeOptions = [
+                {id:1,label:"Market"},
+                {id:2,label:"Cash"},
+                {id:3,label:"Guarantor"}
+            ];
+            $scope.myModel = {range_id: 1};
+
+
             dataService.getFullPageLoad()
                 .then(getFullPageLoadSuccess, null, getNotification)
                 .catch(errorCallback)
@@ -21,7 +29,7 @@
             function getFullPageLoadSuccess(allData) {
 
                 $scope.payupGridColumnsDefinition = allData.gridColumns;
-                $scope.payupGridData = new wijmo.collections.CollectionView(allData.gridData);
+                $scope.payupGridData = new wijmo.collections.CollectionView(allData.YR30.gridData);
                 $scope.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
 
                 $scope.couponList = allData.couponList;
@@ -54,8 +62,14 @@
 
             function getGridDataSuccess(refreshGridData) {
 
-                $scope.payupGridColumnsDefinition = refreshGridData.gridColumns;
-                $scope.payupGridData = new wijmo.collections.CollectionView(refreshGridData.gridData);
+                console.log("Product Selected=" +  $scope.productGroupSelected );
+                if ($scope.productGroupSelected == "30/20 YR") {
+                    $scope.payupGridColumnsDefinition = refreshGridData.gridColumns;
+                    $scope.payupGridData = new wijmo.collections.CollectionView(refreshGridData.YR30.gridData);
+                } else if ($scope.productGroupSelected == "15/10 YR") {
+                    $scope.payupGridColumnsDefinition = refreshGridData.gridColumns;
+                    $scope.payupGridData = new wijmo.collections.CollectionView(refreshGridData.YR15.gridData);
+                }
                 $scope.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
 
                 //$scope.$apply('data');
