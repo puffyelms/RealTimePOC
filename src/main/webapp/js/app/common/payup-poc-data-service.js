@@ -5,7 +5,7 @@
     function dataService($q, $timeout, $http) {
         return {
             getFullPageLoad: getFullPageLoad,
-            getGridData: getGridData
+            getGridData : getGridData
         };
 
 
@@ -30,11 +30,17 @@
 
 
 
-        function getGridData( product, minCoupon, maxCoupon) {
+        function getGridData( product, viewType, minCoupon, maxCoupon) {
 
             return $http({
                 method: 'GET',
                 url: 'http://localhost:3000/refreshGrid',
+                params: {
+                    productName: product,
+                    minCoupon: minCoupon,
+                    maxCoupon: maxCoupon,
+                    viewType: viewType
+                },
                 headers: {
                     'PS-DataLogger-Version': '1.01'
                 }

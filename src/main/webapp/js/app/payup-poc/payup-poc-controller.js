@@ -2,24 +2,21 @@
     angular.module('appPayupPoc')
         .controller('appCtrl', function appCtrl($scope, dataService) {
 
+            var payupCtrl = this;
+
             //Column headers
-            $scope.payupGridColumnsDefinition = [];
-            $scope.payupGridData = [];
+            payupCtrl.payupGridColumnsDefinition = [];
+            payupCtrl.payupGridData = [];
 
-            $scope.productGroupList = [];
-            $scope.productGroupSelected = "";
+            payupCtrl.productGroupList = [];
+            payupCtrl.productGroupSelected = "";
 
-            $scope.couponList = [];
-            $scope.couponListMinSelected = "";
-            $scope.couponListMaxSelected = "";
+            payupCtrl.couponList = [];
+            payupCtrl.couponListMinSelected = "";
+            payupCtrl.couponListMaxSelected = "";
 
-            $scope.rangeOptions = [
-                {id:1,label:"Market"},
-                {id:2,label:"Cash"},
-                {id:3,label:"Guarantor"}
-            ];
-            $scope.myModel = {range_id: 1};
-
+            payupCtrl.viewTypeRangeOptions = [];
+            payupCtrl.viewTypeRangeSelected = 2;
 
             dataService.getFullPageLoad()
                 .then(getFullPageLoadSuccess, null, getNotification)
@@ -28,16 +25,18 @@
 
             function getFullPageLoadSuccess(allData) {
 
-                $scope.payupGridColumnsDefinition = allData.gridColumns;
-                $scope.payupGridData = new wijmo.collections.CollectionView(allData.YR30.gridData);
-                $scope.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
+                payupCtrl.payupGridColumnsDefinition = allData.gridColumns;
+                payupCtrl.payupGridData = new wijmo.collections.CollectionView(allData.YR30.gridData);
+                payupCtrl.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
 
-                $scope.couponList = allData.couponList;
-                $scope.couponListMinSelected = allData.minCoupon;
-                $scope.couponListMaxSelected = allData.maxCoupon;
+                payupCtrl.couponList = allData.couponList;
+                payupCtrl.couponListMinSelected = allData.minCoupon;
+                payupCtrl.couponListMaxSelected = allData.maxCoupon;
 
-                $scope.productGroupList = allData.options;
-                $scope.productGroupSelected = allData.options[0];
+                payupCtrl.productGroupList = allData.options;
+                payupCtrl.productGroupSelected = allData.options[0];
+
+                payupCtrl.viewTypeRangeOptions = allData.viewTypeList;
 
             }
             function getNotification(notification) {
@@ -53,8 +52,9 @@
             }
 
 
-            $scope.refreshDataClick = function () {
-                dataService.getGridData()
+            payupCtrl.refreshDataClick = function () {
+                dataService.getGridData(payupCtrl.productGroupSelected,  payupCtrl.viewTypeRangeOptions[payupCtrl.viewTypeRangeSelected].label,
+                                        payupCtrl.couponListMinSelected, payupCtrl.couponListMaxSelected)
                     .then(getGridDataSuccess, null, getNotification)
                     .catch(errorCallback)
                     .finally(getGridDataComplete);
@@ -63,16 +63,15 @@
             function getGridDataSuccess(refreshGridData) {
 
                 console.log("Product Selected=" +  $scope.productGroupSelected );
-                if ($scope.productGroupSelected == "30/20 YR") {
-                    $scope.payupGridColumnsDefinition = refreshGridData.gridColumns;
-                    $scope.payupGridData = new wijmo.collections.CollectionView(refreshGridData.YR30.gridData);
-                } else if ($scope.productGroupSelected == "15/10 YR") {
-                    $scope.payupGridColumnsDefinition = refreshGridData.gridColumns;
-                    $scope.payupGridData = new wijmo.collections.CollectionView(refreshGridData.YR15.gridData);
+                if (payupCtrl.productGroupSelected == "30/20 YR") {
+                    payupCtrl.payupGridColumnsDefinition = refreshGridData.gridColumns;
+                    payupCtrl.payupGridData = new wijmo.collections.CollectionView(refreshGridData.YR30.gridData);
+                } else if (payupCtrl.productGroupSelected == "15/10 YR") {
+                    payupCtrl.payupGridColumnsDefinition = refreshGridData.gridColumns;
+                    payupCtrl.payupGridData = new wijmo.collections.CollectionView(refreshGridData.YR15.gridData);
                 }
-                $scope.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
+                payupCtrl.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
 
-                //$scope.$apply('data');
             }
 
             function getGridDataComplete() {

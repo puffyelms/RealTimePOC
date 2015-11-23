@@ -2,7 +2,7 @@
 .wj-flexgrid {
     /*height: 300px;*/
     width: auto;
-    background-color: white;
+    /*background-color: white;*/
     /*box-shadow: 4px 4px 10px 0px rgba(50, 50, 50, 0.75);*/
     margin-bottom: 12px;
 }
@@ -12,24 +12,23 @@
     display: none !important;
 }
 
-/*.styled-select select {*/
-    /*!*background: transparent;*!*/
-    /*width: 80px;*/
-    /*padding: 5px;*/
-    /*font-size: 16px;*/
-    /*line-height: 1;*/
-    /*margin: 5px;*/
-    /*!*border: 1px;*!*/
-    /*border-radius: 5px;*/
-    /*height: 34px;*/
-    /*-webkit-appearance: none;*/
-/*}*/
+/* Basic Payup PoC Styling */
 
-/*.productDropDown {*/
-    /*width: 120px;*/
-/*}*/
+.main-page-container {
+    margin: 10px;
+}
 
-/*.couponDropDown {*/
-    /*width: 75px;*/
-/*}*/
+.basic-float-container {
+    float: left;
+    margin-right: 5px;
+}
 
+.basic-float-cancel-container {
+    clear:both;
+    margin-bottom: 15px;
+}
+
+.btn-tab {
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
+}

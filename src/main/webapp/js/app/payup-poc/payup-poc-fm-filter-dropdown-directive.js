@@ -8,7 +8,7 @@
                     dropdownLabel : '@',
                     dropdownWidth : '@dropdownWidth'
                 },
-                templateUrl: "templates/fmFilterDropdown.html",
+                templateUrl: "templates/fm-filter-dropdown-template.html",
                 restrict: 'E',
                 controller: function($scope) {
                     $scope.dropdownStyleWidth = "";
@@ -17,6 +17,5 @@
                     }
                 }
             }
-
         });
 }());

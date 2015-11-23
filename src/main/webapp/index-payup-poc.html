@@ -10,47 +10,57 @@
 </head>
 
 <body ng-app="appPayupPoc" >
-    <div ng-controller="appCtrl" style="margin: 10px;">
+
+    <div ng-controller="appCtrl as payupCtrl" class="main-page-container">
+        <h2>MPx Payup Monitor</h2>
         <div>
-            <div style="float: left; margin-right: 5px; ">
+            <div class="basic-float-container">
                 <fm-filter-dropdown dropdown-width="120px" dropdown-label="Product"
-                                    dropdown-list="productGroupList" dropdown-selected="productGroupSelected"></fm-filter-dropdown>
+                                    dropdown-list="payupCtrl.productGroupList"
+                                    dropdown-selected="payupCtrl.productGroupSelected">
+                </fm-filter-dropdown>
             </div>
 
-            <div style="float: left; margin-right: 5px;">
+            <div class="basic-float-container">
                 <fm-filter-dropdown dropdown-width="75px" dropdown-label="Min Coupon"
-                                    dropdown-list="couponList" dropdown-selected="couponListMinSelected"></fm-filter-dropdown>
+                                    dropdown-list="payupCtrl.couponList"
+                                    dropdown-selected="payupCtrl.couponListMinSelected">
+                </fm-filter-dropdown>
             </div>
 
-            <div style="float: left; margin-right: 5px;">
+            <div class="basic-float-container">
                 <fm-filter-dropdown dropdown-width="75px" dropdown-label="Max Coupon"
-                                     dropdown-list="couponList" dropdown-selected="couponListMaxSelected"></fm-filter-dropdown>
+                                     dropdown-list="payupCtrl.couponList"
+                                    dropdown-selected="payupCtrl.couponListMaxSelected">
+                </fm-filter-dropdown>
             </div>
 
-            <div style="float: left; margin-right: 5px;">
-                <button fm-blur-me class="btn btn-default btn-sm" ng-click="refreshDataClick()">Refresh Data</button>
+            <div class="basic-float-container">
+                <button fm-blur-me class="btn btn-primary btn-sm" ng-click="payupCtrl.refreshDataClick()">Refresh Data</button>
             </div>
 
         </div>
-        <div style="clear:both; margin-bottom: 15px;"></div>
+        <div class="basic-float-cancel-container"></div>
 
 
         <div fm-button-group
-             model="myModel"
-             options="rangeOptions">
+             range-selected="payupCtrl.viewTypeRangeSelected"
+             options="payupCtrl.viewTypeRangeOptions">
         </div>
         <div>
-            <wj-flex-grid items-source="payupGridData" auto-generate-columns="false" headers-visibility="Column"
+            <wj-flex-grid items-source="payupCtrl.payupGridData" auto-generate-columns="false" headers-visibility="Column"
                           is-read-only="true" allowSorting="false">
-                <wj-flex-grid-column ng-repeat="col in payupGridColumnsDefinition" header="{{col.header}}"
+                <wj-flex-grid-column ng-repeat="col in payupCtrl.payupGridColumnsDefinition" header="{{col.header}}"
                                      binding="{{col.binding}}">
                 </wj-flex-grid-column>
             </wj-flex-grid>
         </div>
         <div>
-            <p>Selected product Group: {{productGroupSelected}}</p>
-            <p>Selected min item: {{couponListMinSelected}}</p>
-            <p>Selected max item: {{couponListMaxSelected}}</p>
+            <p>Selected product Group: {{payupCtrl.productGroupSelected}}</p>
+            <p>Selected min item: {{payupCtrl.couponListMinSelected}}</p>
+            <p>Selected max item: {{payupCtrl.couponListMaxSelected}}</p>
+            <p>Selected View Type Button: {{payupCtrl.viewTypeRangeSelected}}</p>
+            <p>Selected View Type Button: {{payupCtrl.viewTypeRangeOptions[payupCtrl.viewTypeRangeSelected].label}}</p>
         </div>
     </div>
 
@@ -70,15 +80,6 @@
     <script src="js/app/payup-poc/payup-poc-fm-filter-dropdown-directive.js" ></script>
     <script src="js/app/payup-poc/payup-poc-fm-group-button-directive.js" ></script>
     <script src="js/app/common/payup-poc-blur-me-directive.js" ></script>
-
-<!--<script text="">-->
-    <!--$('body').on('click', '.btn-group button', function (e) {-->
-        <!--$(this).addClass('active');-->
-        <!--$(this).siblings().removeClass('active');-->
-
-        <!--//do any other button related things-->
-    <!--});-->
-<!--</script>-->
 
 </body>
 </html>
