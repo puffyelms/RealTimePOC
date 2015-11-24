@@ -13,7 +13,7 @@
 
             return $http({
                 method: 'GET',
-                url: 'http://localhost:3000/fullPageLoad',
+                url: 'http://localhost:3000/full_page_load',
                 headers: {
                     'PS-DataLogger-Version': '1.01'
                 }
@@ -34,7 +34,7 @@
 
             return $http({
                 method: 'GET',
-                url: 'http://localhost:3000/refreshGrid',
+                url: 'http://localhost:3000/payup_grid',
                 params: {
                     productName: product,
                     minCoupon: minCoupon,

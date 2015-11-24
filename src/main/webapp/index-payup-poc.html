@@ -15,21 +15,21 @@
         <h2>MPx Payup Monitor</h2>
         <div>
             <div class="basic-float-container">
-                <fm-filter-dropdown dropdown-width="120px" dropdown-label="Product"
+                <fm-filter-dropdown dropdown-width="120px" dropdown-label="Product:"
                                     dropdown-list="payupCtrl.productGroupList"
                                     dropdown-selected="payupCtrl.productGroupSelected">
                 </fm-filter-dropdown>
             </div>
 
             <div class="basic-float-container">
-                <fm-filter-dropdown dropdown-width="75px" dropdown-label="Min Coupon"
+                <fm-filter-dropdown dropdown-width="75px" dropdown-label="Min Coupon:"
                                     dropdown-list="payupCtrl.couponList"
                                     dropdown-selected="payupCtrl.couponListMinSelected">
                 </fm-filter-dropdown>
             </div>
 
             <div class="basic-float-container">
-                <fm-filter-dropdown dropdown-width="75px" dropdown-label="Max Coupon"
+                <fm-filter-dropdown dropdown-width="75px" dropdown-label="Max Coupon:"
                                      dropdown-list="payupCtrl.couponList"
                                     dropdown-selected="payupCtrl.couponListMaxSelected">
                 </fm-filter-dropdown>
@@ -60,7 +60,7 @@
             <p>Selected min item: {{payupCtrl.couponListMinSelected}}</p>
             <p>Selected max item: {{payupCtrl.couponListMaxSelected}}</p>
             <p>Selected View Type Button: {{payupCtrl.viewTypeRangeSelected}}</p>
-            <p>Selected View Type Button: {{payupCtrl.viewTypeRangeOptions[payupCtrl.viewTypeRangeSelected].label}}</p>
+            <!--<p>Selected View Type Button: {{payupCtrl.viewTypeRangeOptions[payupCtrl.viewTypeRangeSelected].label}}</p>-->
         </div>
     </div>
 
