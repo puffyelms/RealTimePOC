@@ -28,6 +28,8 @@
 
             // use the "initialized" event to initialize the multiple header rows
             $scope.init = function (s, e) {
+                //var flex = panel.grid;
+                //flex.beginUpdate();
                 //for (var i = 0; i < 3; i++) {
                 if (s.columnHeaders.rows.length < 2) {
 
@@ -57,23 +59,26 @@
 
 
                 }
+                //flex.endUpdate();
             }
 
             $scope.itemFormatter = function (panel, r, c, cell) {
-                if (panel.cellType == wijmo.grid.CellType.Cell) {
-                    var flex = panel.grid;
-                    //if its calculated column
-                    if (r <=3 && c > 0) {
-                        flex.beginUpdate();
-                        //get data from other columns for this row i.e. profilt=sales-expenses
-                        var calculatedData = parseInt(flex.getCellData(r, 1, false)) - parseInt(flex.getCellData(r, 2, false));
-                        //set the value in the calculated column
-                        //cell.innerHTML = "<input type='radio' />";
-                        cell.innerHTML = "<div style='border: solid 1px black;  color: green; background-color: pink;'>"+flex.getCellData(r, c, false)+"</div>";
-                       // flex.setCellData(r, c, calculatedData, true);
-                        flex.endUpdate();
-                    }
-                }
+                console.log("Called itemFormatter");
+                //if (panel.cellType == wijmo.grid.CellType.Cell) {
+                //
+                //    //if its calculated column
+                //    if (r <=3 && c > 0) {
+                //        var flex = panel.grid;
+                //        flex.beginUpdate();
+                //        //get data from other columns for this row i.e. profilt=sales-expenses
+                //        //var calculatedData = parseInt(flex.getCellData(r, 1, false)) - parseInt(flex.getCellData(r, 2, false));
+                //        //set the value in the calculated column
+                //        //cell.innerHTML = "<input type='radio' />";
+                //        cell.innerHTML = "<div style='border: solid 1px black;  color: green; background-color: pink;'>"+flex.getCellData(r, c, false)+"</div>";
+                //       // flex.setCellData(r, c, calculatedData, true);
+                //        flex.endUpdate();
+                //    }
+                //}
 
 
             }
