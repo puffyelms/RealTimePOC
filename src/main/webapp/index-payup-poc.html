@@ -49,8 +49,10 @@
         </div>
         <div>
             <wj-flex-grid items-source="payupCtrl.payupGridData" auto-generate-columns="false" headers-visibility="Column"
-                          is-read-only="true" allowSorting="false">
-                <wj-flex-grid-column ng-repeat="col in payupCtrl.payupGridColumnsDefinition" header="{{col.header}}"
+                          is-read-only="true" allowSorting="false"
+                          initialized="init(s,e)" >
+                <!--header="{{col.header}}"-->
+                <wj-flex-grid-column ng-repeat="col in payupCtrl.payupGridColumnsDefinition"
                                      binding="{{col.binding}}">
                 </wj-flex-grid-column>
             </wj-flex-grid>

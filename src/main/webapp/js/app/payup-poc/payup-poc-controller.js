@@ -18,15 +18,53 @@
             payupCtrl.viewTypeRangeOptions = [];
             payupCtrl.viewTypeRangeSelected = "";
 
+            payupCtrl.settlementDate = "";
+
             dataService.getFullPageLoad()
                 .then(getFullPageLoadSuccess, null, getNotification)
                 .catch(errorCallback)
                 .finally(getFullPageLoadComplete);
 
+
+            // use the "initialized" event to initialize the second grid
+            $scope.init = function (s, e) {
+                //for (var i = 0; i < 3; i++) {
+                if (s.columnHeaders.rows.length < 2) {
+
+                    var hr = new wijmo.grid.Row();
+                    s.columnHeaders.rows.push(hr);
+                }
+
+                // add some data to the column headers
+                var colDef = payupCtrl.payupGridColumnsDefinition;
+
+                for (var r = 0; r < s.columnHeaders.rows.length; r++) {
+                    if (r==0) {
+                        for (var c = 0; c < s.columns.length; c++) {
+                            var content = colDef[c].header;// 'r:' + r + ',c:' + c;
+                            s.columnHeaders.setCellData(r, c, content);
+
+                        }
+                    } if (r==1) {
+                        for (var c = 0; c < s.columns.length; c++) {
+                            if (c == 0) {
+                                s.columnHeaders.setCellData(r, c, "Settlement Date");
+                            } else {
+                                s.columnHeaders.setCellData(r, c, payupCtrl.settlementDate);
+                            }
+                        }
+                    }
+
+
+                }
+            }
+
+
             function getFullPageLoadSuccess(allData) {
 
                 payupCtrl.payupGridColumnsDefinition = allData.gridColumns;
                 payupCtrl.payupGridData = new wijmo.collections.CollectionView(allData.gridData);
+                payupCtrl.settlementDate = allData.settlementDate;
                 payupCtrl.payupGridData.moveCurrentToPosition(-1);  // Clears selection of first cell from table
 
                 payupCtrl.couponList = allData.couponList;
